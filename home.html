@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TinyBliss – Salon Spa & Massage Yogyakarta</title>
+    
+    <!-- Fonts & Icons CDN -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="home.css">
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <header> 
+        <nav class="navbar navbar-expand-lg px-3 px-md-5 fixed-top navbar-custom"> 
+            
+            <a class="navbar-brand" href="home.html"> 
+                <img src="picture/tinyblisslogo.png" alt="Tiny Bliss"> 
+                <div class="navbar-brand-text"> 
+                    <span class="navbar-brand-name">TinyBliss</span> 
+                    <span class="navbar-brand-tagline">Spa &amp; Massage</span> 
+                </div> 
+            </a> 
+
+            <button class="navbar-toggler ms-auto me-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation"> 
+                <span class="navbar-toggler-icon"></span> 
+            </button> 
+
+            <div class="collapse navbar-collapse" id="navbarMenu"> 
+                <ul class="navbar-nav mx-auto gap-lg-3"> 
+                    <li class="nav-item"> 
+                        <a class="nav-link active" href="home.html">Home</a> 
+                    </li> 
+                    <li class="nav-item"> 
+                        <a class="nav-link" href="about.html">About Us</a> 
+                    </li> 
+                    <li class="nav-item"> 
+                        <a class="nav-link" href="service.html">Service</a> 
+                    </li> 
+                    <li class="nav-item"> 
+                        <a class="nav-link" href="membership.html">Member</a> 
+                    </li> 
+                    <li class="nav-item"> 
+                        <a class="nav-link" href="booking.html">Booking</a> 
+                    </li> 
+                </ul> 
+
+                <a class="nav-user ms-lg-3" href="#"> 
+                    <div class="nav-user-avatar"> 
+                        <i class="ti ti-user"></i> 
+                    </div> 
+                    <div class="nav-user-info"> 
+                        <span class="nav-user-greeting">Selamat datang</span> 
+                        <span id="username"></span>
+                    </div> 
+                </a> 
+            </div> 
+
+        </nav> 
+    </header>
+
+     <!-- LOGIN ALERT -->
+    <div class="modal fade"
+        id="loginModal"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-center p-4">
+                <h4 class="mb-3">Akses Member</h4>
+                <p> Untuk melakukan booking dan menikmati layanan Tiny Bliss, silakan login terlebih dahulu. </p>
+                <button class="btn btn-dark w-100" onclick="window.location.href='regisloginTiny.html'"> Login </button>
+            </div>
+        </div>
+    </div>
+
+   <!-- HERO -->
+    <section class="hero-section">
+            <img src="picture/header.png" alt="Suasana Tiny Bliss Spa" class="hero-bg-img active">  
+        <div class="hero-overlay-content">
+            <span class="hero-eyebrow">Yogyakarta · Since 2020</span>
+            <h1 class="hero-title">Temukan Ketenangan<br>di Setiap Sentuhan</h1>
+            <p class="hero-subtitle">Ritual perawatan premium oleh terapis bersertifikat,<br>untuk tubuh dan pikiran yang lebih seimbang.</p>
+            <div class="hero-actions">
+                <!--terdapat button untuk ke halaman booking dan service -->
+                <button class="btn-hero-book" onclick="window.location.href='booking.html'">Reservasi Sekarang</button>
+                <button class="btn-hero-secondary" onclick="window.location.href='service.html'">Lihat Layanan</button>
+            </div>
+        </div>
+        <div class="hero-scroll-hint">
+            <div class="scroll-line"></div>
+            <span>Scroll</span>
+        </div>
+    </section>
+
+    <!-- STATS COUNTER -->
+    <section class="stats-section">
+        <div class="stats-inner">
+            <div class="stat-item fade-up">
+                <span class="stat-number" data-target="1200" data-suffix="+">0</span>
+                <span class="stat-label">Klien Puas</span>
+            </div>
+            <div class="stat-item fade-up" style="transition-delay:.1s">
+                <span class="stat-number" data-target="8" data-suffix="+">0</span>
+                <span class="stat-label">Terapis Ahli</span>
+            </div>
+            <div class="stat-item fade-up" style="transition-delay:.2s">
+                <span class="stat-number" data-target="12" data-suffix="+">0</span>
+                <span class="stat-label">Jenis Treatment</span>
+            </div>
+            <div class="stat-item fade-up" style="transition-delay:.3s">
+                <span class="stat-number" data-target="5" data-suffix="★">0</span>
+                <span class="stat-label">Rating Google</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about-section py-5">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-md-6">
+                    <div class="about-img-wrapper">
+                        <img src="picture/12.png" alt="Suasana Tenang Tiny Bliss" class="about-img" style="max-height:480px;">
+                    </div>
+                </div>
+                <div class="col-md-6 fade-up">
+                    <span class="about-eyebrow">Mengenal Kami</span>
+                    <h2 class="about-title">Tempat di Mana <em>Ketenangan</em><br>Menjadi Ritual</h2>
+                    <p class="about-text">
+                       Di tengah ritme kota yang serba cepat, Tiny Bliss hadir sebagai tempat untuk pulang ke diri sendiri.
+                        Setiap treatment kami dirancang dengan cermat dan ditangani oleh terapis profesional bersertifikat. <br>
+                        Menggabungkan teknik pijat relaksasi mendalam, perawatan kulit alami, dan kebaikan aromaterapi untuk membawa Anda pulang dengan energi yang terbarukan.
+                    </p>
+                    <div class="about-highlights">
+                        <div class="about-highlight-item">
+                            <div class="about-highlight-icon"><i class="ti ti-certificate" aria-hidden="true"></i></div>
+                            <div>
+                                <span class="about-highlight-label">Bersertifikat</span>
+                                <span class="about-highlight-desc">Semua terapis kami terlatih & tersertifikasi</span>
+                            </div>
+                        </div>
+                        <div class="about-highlight-item">
+                            <div class="about-highlight-icon"><i class="ti ti-leaf" aria-hidden="true"></i></div>
+                            <div>
+                                <span class="about-highlight-label">Bahan Alami</span>
+                                <span class="about-highlight-desc">Produk ramah kulit & ramah lingkungan</span>
+                            </div>
+                        </div>
+                        <div class="about-highlight-item">
+                            <div class="about-highlight-icon"><i class="ti ti-heart" aria-hidden="true"></i></div>
+                            <div>
+                                <span class="about-highlight-label">Nyaman & Aman</span>
+                                <span class="about-highlight-desc">Ruangan bersih, tenang, dan higienis</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn-about-more" onclick="window.location.href='about.html'">
+                        Pelajari Selengkapnya <i class="ti ti-arrow-right" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+        <span class="section-eyebrow">Perawatan Terbaik Kami</span>
+        <h2 class="section-title">Layanan Unggulan</h2>
+
+        <div class="services-grid">
+            <div class="service-card fade-up">
+                <div class="service-image-wrapper">
+                    <img src="picture/5.png" alt="Traditional Massage">
+                    <div class="service-badge-tag">Massage</div>
+                </div>
+                <div class="service-card-body">
+                    <h3 class="service-title">Traditional Massage</h3>
+                    <p class="service-description">
+                        Meredakan ketegangan otot dan mengembalikan stamina optimal Anda lewat teknik pijat tradisional yang telah terbukti selama berabad-abad.
+                    </p>
+                    <div class="service-card-footer">
+                        <div class="price-display">
+                            <span class="price-label">Mulai dari</span>
+                            <span class="price-amount">Rp150.000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="service-card fade-up" style="transition-delay:.12s">
+                <div class="service-image-wrapper">
+                    <img src="picture/13.png" alt="Body Scrub Treatment">
+                    <div class="service-badge-tag">Spa</div>
+                </div>
+                <div class="service-card-body">
+                    <h3 class="service-title">Body Scrub</h3>
+                    <p class="service-description">
+                        Eksfoliasi lembut dengan bahan alami pilihan untuk mengangkat sel kulit mati, menjadikan kulit lebih halus, bersih, dan bercahaya.
+                    </p>
+                    <div class="service-card-footer">
+                        <div class="price-display">
+                            <span class="price-label">Mulai dari</span>
+                            <span class="price-amount">Rp175.000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+           <div class="service-card fade-up" style="transition-delay:.24s">
+                <div class="service-image-wrapper">
+                    <img src="picture/3.png" alt="Relaxation Therapy">
+                    <div class="service-badge-tag">Therapy</div>
+                </div>
+                <div class="service-card-body">
+                    <h3 class="service-title">Relaxation Therapy</h3>
+                    <p class="service-description">
+                        Nikmati terapi relaksasi yang dirancang untuk meredakan ketegangan otot, mengurangi stres, dan mengembalikan keseimbangan tubuh serta pikiran.
+                    </p>
+                    <div class="service-card-footer">
+                        <div class="price-display">
+                            <span class="price-label">Mulai dari</span>
+                            <span class="price-amount">Rp180.000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICE BANNER CTA -->
+    <section class="service-footer">
+        <div class="container-fluid px-0" style="max-width:1148px;margin:0 auto;padding:0 24px;">
+            <div class="service-banner fade-up">
+                <div class="service-banner-left">
+                    <i class="ti ti-flower service-banner-icon" aria-hidden="true"></i>
+                    <div class="service-banner-text">
+                        Masih ada 6 treatment lainnya yang menanti Anda
+                        <span>Jelajahi semua layanan premium TinyBliss dan temukan yang paling cocok untuk Anda</span>
+                    </div>
+                </div>
+                <button class="service-btn" onclick="window.location.href='service.html'">
+                    Lihat Semua <i class="ti ti-arrow-right" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- MEMBER -->
+    <section class="member-section">
+        <div class="member-card-wrapper">
+            <div class="member-content fade-up">
+                <span class="member-badge">TinyBliss Exclusive</span>
+                <h2 class="member-title">Nikmati Penawaran Khusus Sebagai Member Kami</h2>
+                <p class="member-text">
+                    Diskon hingga 20% untuk setiap treatment premium, akumulasi poin reward, dan akses reservasi prioritas setiap bulannya — hanya untuk member.
+                </p>
+            </div>
+            <div class="member-action">
+                <button class="btn-daftar" onclick="window.location.href='membership.html'">
+                    Daftar Sekarang <i class="ti ti-arrow-right" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="tb-footer">
+        <div class="tb-footer-container">
+            <!-- LOGO -->
+            <div>
+                <img src="picture/tinyblisslogo.PNG" alt="Tinny Bliss" class="tb-logo">
+            </div>
+
+            <!-- ALAMAT -->
+            <div>
+                <h3 class="tb-footer-title">Alamat Kami</h3>
+                <div class="tb-footer-text">
+                    <p>Tinny Bliss Salon Spa & Massage</p>
+                    <p>Yogyakarta, Indonesia</p>
+                </div>
+            </div>
+
+            <!-- KONTAK -->
+            <div>
+                <h3 class="tb-footer-title">Hubungi Kami</h3>
+                <div class="tb-contact-wrapper">
+                    <div class="tb-contact-item">
+                        <i class="ti ti-brand-whatsapp"></i>
+                        <a href="https://wa.me/6285141129477">085141129477</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SOCIAL MEDIA -->
+            <div>
+                <h3 class="tb-footer-title">Follow Us On</h3>
+                <div class="tb-socials">
+                    <a href="#" class="tb-social-btn"><i class="ti ti-brand-facebook"></i></a>
+                    <a href="#" class="tb-social-btn"><i class="ti ti-brand-tiktok"></i></a>
+                    <a href="#" class="tb-social-btn"><i class="ti ti-brand-youtube"></i></a>
+                    <a href="#" class="tb-social-btn"><i class="ti ti-brand-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="tb-footer-bottom">
+            © 2026 Tinny Bliss Salon Spa & Massage. All Rights Reserved.
+        </div>
+    </footer>
+
+    <!-- Custom Script -->
+    <script src="home.js"></script>
+    <script src="navbar"></script>
+</body>
+</html>

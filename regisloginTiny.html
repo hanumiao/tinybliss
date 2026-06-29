@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Luxury Resort</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-image: url('picture/header.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      font-family: 'Montserrat', sans-serif;
+      padding: 20px;
+    }
+
+    /* Glass card wrapper */
+    .card {
+      position: relative;
+      z-index: 1;
+    }
+
+    .card {
+      display: flex;
+      width: 100%;
+      max-width: 620px;
+      min-height: 360px;
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.45);
+    }
+
+    /* LEFT PANEL */
+    .panel-left {
+      width: 300px;
+      flex-shrink: 0;
+      background: radial-gradient(ellipse at 30% 40%,#fff8df 0%,#fff3c9 50%,#f7e8b0 100%);
+      border-right: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 28px;
+      text-align: center;
+    }
+
+    .logo-img{
+      width: 150px;
+      height: 150px;
+      object-fit: contain;
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .brand-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      color: #860010;
+      margin-bottom: 20px;
+    }
+
+    .brand-tagline {
+      font-size: 10.5px;
+      font-weight: 300;
+      color: #860010;
+      line-height: 1.8;
+      letter-spacing: 0.02em;
+    }
+
+    /* RIGHT PANEL */
+    .panel-right {
+      flex: 1;
+      background: #f7f4ef;
+      padding: 36px 36px 40px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* TABS */
+    .tabs {
+      display: flex;
+      gap: 28px;
+      margin-bottom: 28px;
+    }
+
+    .tab-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #b0a89a;
+      padding: 0 0 6px;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .tab-btn.active {
+      color: #c9a84c;
+      border-bottom-color: #c9a84c;
+    }
+
+    /* FORMS */
+    .form { display: none; flex-direction: column; gap: 13px; }
+    .form.active { display: flex; }
+
+    .input-wrap {
+      position: relative;
+    }
+
+    .input-wrap svg {
+      position: absolute;
+      left: 13px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 15px;
+      height: 15px;
+      color: #aaa;
+      pointer-events: none;
+    }
+
+    .input-wrap input {
+      width: 100%;
+      padding: 11px 38px 11px 38px;
+      border: 1px solid #ddd;
+      border-radius: 3px;
+      background: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12.5px;
+      color: #444;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .input-wrap input::placeholder { color: #bbb; }
+    .input-wrap input:focus { border-color: #c9a84c; }
+
+    .toggle-pw {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #bbb;
+      padding: 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .toggle-pw svg { width: 16px; height: 16px; }
+
+    /* Checkbox row */
+    .agree-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      color: #888;
+      margin-top: 2px;
+    }
+
+    .agree-row input[type="checkbox"] {
+      accent-color: #c9a84c;
+      width: 13px;
+      height: 13px;
+      cursor: pointer;
+    }
+
+    .agree-row a { color: #c9a84c; text-decoration: none; }
+    .agree-row a:hover { text-decoration: underline; }
+
+    /* Submit button */
+    .btn-submit {
+      margin-top: 6px;
+      padding: 12px;
+      background: #860010;
+      color: #fff;
+      border: none;
+      border-radius: 3px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-submit:hover { background: #b8922f; }
+
+    /* Alert / toast */
+    .toast {
+      position: fixed;
+      top: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-80px);
+      background: #38842f;
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 4px;
+      font-size: 12.5px;
+      letter-spacing: 0.03em;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+      transition: transform 0.35s cubic-bezier(.22,.68,0,1.2);
+      z-index: 999;
+    }
+
+    .toast.show { transform: translateX(-50%) translateY(0); }
+    .toast.error { background: #a84c4c; }
+
+    /* ── Tablet (≤ 600px): stack panels vertically ── */
+    @media (max-width: 600px) {
+      body { align-items: center; padding: 16px; }
+
+      .card {
+        flex-direction: column;
+        max-width: 100%;
+        border-radius: 8px;
+      }
+
+      .panel-left {
+        width: 100%;
+        border-right: 1px solid rgba(255,255,255,0.18);
+        border-bottom: none;
+        padding: 32px 24px 28px;
+        flex-direction: row;
+        gap: 20px;
+        text-align: left;
+        align-items: center;
+        justify-content: flex-start;
+      }
+
+      .logo-svg {
+        width: 52px;
+        height: 44px;
+        flex-shrink: 0;
+        margin-bottom: 0;
+      }
+
+      .brand-info { display: flex; flex-direction: column; }
+
+      .brand-name { margin-bottom: 6px; font-size: 20px; }
+
+      .brand-tagline { display: none; }
+
+      .panel-right { padding: 28px 24px 32px; }
+
+      .tabs { margin-bottom: 20px; }
+    }
+
+    /* ── Small mobile (≤ 400px) ── */
+    @media (max-width: 400px) {
+      body { padding: 12px; }
+
+      .panel-left { padding: 22px 16px; gap: 14px; }
+
+      .panel-right { padding: 22px 16px 28px; }
+
+      .brand-name { font-size: 18px; }
+
+      .input-wrap input { font-size: 13px; padding: 13px 38px; }
+
+      .btn-submit { padding: 14px; font-size: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <!-- LEFT -->
+  <div class="panel-left">
+    <!-- Lotus SVG logo -->
+    <img src="picture/tinyblisslogo.PNG" alt="Tiny Bliss Logo" class="logo-img">
+      <path d="M40 58 C40 58 14 44 14 26 C14 18 22 12 30 16 C32 10 36 6 40 6 C44 6 48 10 50 16 C58 12 66 18 66 26 C66 44 40 58 40 58Z" stroke="#c9a84c" stroke-width="1.4" fill="none"/>
+      <path d="M40 58 C40 58 22 40 22 26 C22 20 28 16 33 20 C34 15 37 11 40 11 C43 11 46 15 47 20 C52 16 58 20 58 26 C58 40 40 58 40 58Z" stroke="#c9a84c" stroke-width="1.2" fill="none" opacity="0.7"/>
+      <path d="M40 58 C40 58 30 42 30 30 C30 25 34.5 22 37 24 C37.5 20 38.8 17 40 17 C41.2 17 42.5 20 43 24 C45.5 22 50 25 50 30 C50 42 40 58 40 58Z" stroke="#c9a84c" stroke-width="1.1" fill="none" opacity="0.5"/>
+      <line x1="40" y1="58" x2="40" y2="62" stroke="#c9a84c" stroke-width="1.3"/>
+      <line x1="32" y1="60" x2="48" y2="60" stroke="#c9a84c" stroke-width="1.1"/>
+  </img>
+
+    <div class="brand-info">
+      <div class="brand-name">Tiny Bliss</div>
+      <p class="brand-tagline">
+        Tiny Bliss adalah tempat relaksasi dan perawatan tubuh yang menghadirkan pengalaman spa yang menenangkan, dan berkualitas,
+        menghadirkan pengalaman perawatan tubuh dan pikiran yang menenangkan di lingkungan yang nyaman dan elegan.
+      </p>
+    </div>
+  </div>
+
+  <!-- RIGHT -->
+  <div class="panel-right">
+    <div class="tabs">
+      <button class="tab-btn active" id="tab-register" onclick="switchTab('register')">Register</button>
+      <button class="tab-btn" id="tab-login" onclick="switchTab('login')">Login</button>
+    </div>
+
+    <!-- REGISTER FORM -->
+    <form class="form active" id="form-register" onsubmit="return false;">
+      <div class="input-wrap">
+        <!-- Person icon -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        <input type="text" id="reg-name" placeholder="First name" />
+      </div>
+      <div class="input-wrap">
+        <!-- Email icon -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+        <input type="email" id="reg-email" placeholder="Email" />
+      </div>
+      <div class="input-wrap">
+        <!-- Lock icon -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg>
+        <input type="password" id="reg-pw" placeholder="Create password" />
+        <button type="button" class="toggle-pw" onclick="togglePw('reg-pw', this)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 12S5 5 12 5s11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>
+        </button>
+      </div>
+      <div class="input-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg>
+        <input type="password" id="reg-pw2" placeholder="Retype password" />
+        <button type="button" class="toggle-pw" onclick="togglePw('reg-pw2', this)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 12S5 5 12 5s11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>
+        </button>
+      </div>
+      <label class="agree-row">
+        <input type="checkbox" id="reg-agree" />
+        I agree to the <a href="#">Terms of Use</a> &amp; <a href="#">Privacy Policy</a>
+      </label>
+      <button class="btn-submit" onclick="register()">Register</button>
+    </form>
+
+    <!-- LOGIN FORM -->
+    <form class="form" id="form-login" onsubmit="return false;">
+      <div class="input-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        <input type="text" id="log-user" placeholder="Email" />
+      </div>
+      <div class="input-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg>
+        <input type="password" id="log-pw" placeholder="Password" />
+        <button type="button" class="toggle-pw" onclick="togglePw('log-pw', this)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 12S5 5 12 5s11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>
+        </button>
+      </div>
+      <button class="btn-submit" style="margin-top:20px;" onclick="login()">Login</button>
+    </form>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script src="regisloginTiny.js"></script>
+</body>
+</html>

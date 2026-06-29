@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TinyBliss Membership</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@300;400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <link rel="stylesheet" href="membership.css">
+</head>
+
+<body>
+    <header> 
+        <nav class="navbar navbar-expand-lg px-3 px-md-5 fixed-top navbar-custom" id="siteNav"> 
+            <a class="navbar-brand" href="membership.html"> 
+                <img src="picture/tinyblisslogo.png" alt="Tiny Bliss"> 
+                <div class="navbar-brand-text"> 
+                    <span class="navbar-brand-name">TinyBliss</span> 
+                    <span class="navbar-brand-tagline">Spa &amp; Massage</span> 
+                </div> 
+            </a> 
+
+            <button class="navbar-toggler ms-auto me-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation"> 
+                <span class="navbar-toggler-icon"></span> 
+            </button> 
+
+            <div class="collapse navbar-collapse" id="navbarMenu"> 
+                <ul class="navbar-nav mx-auto gap-lg-3"> 
+                    <li class="nav-item"> 
+                        <a class="nav-link" href="home.html">Home</a> 
+                    </li> 
+                    <li class="nav-item"> 
+                        <a class="nav-link" href="about.html">About Us</a> 
+                    </li> 
+                    <li class="nav-item"> 
+                        <a class="nav-link" href="service.html">Service</a> 
+                    </li> 
+                    <li class="nav-item"> 
+                        <a class="nav-link active" href="membership.html">Member</a> 
+                    </li> 
+                    <li class="nav-item"> 
+                        <a class="nav-link" href="booking.html">Booking</a> 
+                    </li> 
+                </ul> 
+
+                <a class="nav-user ms-lg-3" href="#"> 
+                    <div class="nav-user-avatar"> 
+                        <i class="ti ti-user"></i> 
+                    </div> 
+                    <div class="nav-user-info"> 
+                        <span class="nav-user-greeting">Selamat datang</span> 
+                        <span id="username"></span>
+                    </div> 
+                </a> 
+            </div> 
+        </nav> 
+    </header>
+
+    <section class="hero">
+        <img src="picture/11.png" alt="TinyBliss Spa" class="hero-image">
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+            <p class="eyebrow">TinyBliss Membership</p>
+            <h1 class="hero-title">
+                Wellness that<br>stays with <em>you.</em>
+            </h1>
+            <p class="hero-desc">
+                Jadikan relaksasi sebagai bagian dari gaya hidup. Membership TinyBliss memberikan akses eksklusif,
+                benefit premium, serta pengalaman spa terbaik di setiap kunjungan.
+            </p>
+        </div>
+    </section>
+
+    <section id="benefits" class="membership-section">
+        <div class="container">
+            <div class="section-head">
+                <h2>Choose the membership that fits your lifestyle.</h2>
+                <p>Nikmati berbagai keuntungan eksklusif, diskon treatment, priority booking, birthday gift, hingga akses promo khusus member.</p>
+            </div>
+
+            <div class="benefit-grid">
+                <div class="benefit-card">
+                    <i class="ti ti-calendar-check"></i>
+                    <h3>Priority Booking</h3>
+                    <p>Reservasi lebih cepat dengan slot khusus member.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="ti ti-percentage"></i>
+                    <h3>Exclusive Discount</h3>
+                    <p>Potongan harga hingga 20% untuk seluruh treatment.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="ti ti-gift"></i>
+                    <h3>Birthday Reward</h3>
+                    <p>Free treatment dan special gift setiap ulang tahun.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="ti ti-sparkles"></i>
+                    <h3>Member Event</h3>
+                    <p>Undangan eksklusif wellness workshop dan private event.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="plans" class="plans">
+        <div class="container">
+            <div class="section-title">
+                <h2>Pilih Membership</h2>
+                <p>Pilih paket yang sesuai dengan kebutuhanmu.</p>
+            </div>
+
+            <div class="plans-grid">
+                <div class="plan-card">
+                    <div class="plan-name">Silver</div>
+                    <div class="price">Rp199.000<span>/bulan</span></div>
+                    <ul>
+                        <li><i class="fa-solid fa-check"></i> Diskon 10%</li>
+                        <li><i class="fa-solid fa-check"></i> Priority Booking</li>
+                        <li><i class="fa-solid fa-check"></i> Birthday Voucher</li>
+                        <li><i class="fa-solid fa-check"></i> Reward Point</li>
+                    </ul>
+                    <button class="join-btn" data-plan="Silver">Gabung</button>
+                </div>
+
+                <div class="plan-card popular">
+                    <div class="popular-badge">Most Popular</div>
+                    <div class="plan-name">Gold</div>
+                    <div class="price">Rp399.000<span>/bulan</span></div>
+                    <ul>
+                        <li><i class="fa-solid fa-check"></i> Diskon 20%</li>
+                        <li><i class="fa-solid fa-check"></i> Priority Booking</li>
+                        <li><i class="fa-solid fa-check"></i> Free Facial</li>
+                        <li><i class="fa-solid fa-check"></i> Reward Point 2x</li>
+                        <li><i class="fa-solid fa-check"></i> Exclusive Event</li>
+                    </ul>
+                    <button class="join-btn" data-plan="Gold">Gabung</button>
+                </div>
+
+                <div class="plan-card">
+                    <div class="plan-name">Platinum</div>
+                    <div class="price">Rp699.000<span>/bulan</span></div>
+                    <ul>
+                        <li><i class="fa-solid fa-check"></i> Diskon 30%</li>
+                        <li><i class="fa-solid fa-check"></i> Unlimited Priority Booking</li>
+                        <li><i class="fa-solid fa-check"></i> Free Hair Spa</li>
+                        <li><i class="fa-solid fa-check"></i> Free Facial</li>
+                        <li><i class="fa-solid fa-check"></i> Reward Point 3x</li>
+                        <li><i class="fa-solid fa-check"></i> VIP Customer Service</li>
+                    </ul>
+                    <button class="join-btn" data-plan="Platinum">Gabung</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="container">
+            <h2>Siap Menjadi Member?</h2>
+            <p>Nikmati seluruh keuntungan eksklusif dan pengalaman spa yang lebih istimewa.</p>
+            <a href="#plans" class="btn-primary">Daftar Sekarang</a>
+        </div>
+    </section>
+
+    <div class="modal" id="membershipModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Form Pendaftaran</h2>
+            <form id="membershipForm">
+                <input type="text" placeholder="Nama Lengkap" required>
+                <input type="email" placeholder="Email" required>
+                <input type="tel" placeholder="Nomor HP" required>
+                <input type="text" id="selectedPlan" readonly>
+                <button type="submit">Daftar Membership</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="paymentModal">
+        <div class="modal-content payment-content">
+            <span class="close-payment">&times;</span>
+            <h2>Pembayaran Membership</h2>
+            <p>Silakan scan QRIS berikut untuk menyelesaikan pembayaran.</p>
+            
+            <img src="picture/qris.png" alt="QRIS" class="payment-qr">
+            
+            <p class="payment-note">
+                Setelah pembayaran berhasil, klik tombol di bawah.
+            </p>
+            <button id="finishPayment">
+                Saya Sudah Bayar
+            </button>
+        </div>
+    </div>
+
+    <footer class="tb-footer">
+        <div class="tb-footer-container">
+            <div>
+                <img src="picture/tinyblisslogo.png" alt="Tiny Bliss" class="tb-logo">
+            </div>
+
+            <div>
+                <h3 class="tb-footer-title">Alamat Kami</h3>
+                <div class="tb-footer-text">
+                    <p>Tiny Bliss Salon Spa & Massage</p>
+                    <p>Yogyakarta, Indonesia</p>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="tb-footer-title">Hubungi Kami</h3>
+                <div class="tb-contact-wrapper">
+                    <div class="tb-contact-item">
+                        <i class="ti ti-brand-whatsapp"></i>
+                        <a href="https://wa.me/6285141129477">085141129477</a>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="tb-footer-title">Follow Us On</h3>
+                <div class="tb-socials">
+                    <a href="#" class="tb-social-btn">
+                        <i class="ti ti-brand-facebook"></i>
+                    </a>
+                    <a href="#" class="tb-social-btn">
+                        <i class="ti ti-brand-tiktok"></i>
+                    </a>
+                    <a href="#" class="tb-social-btn">
+                        <i class="ti ti-brand-youtube"></i>
+                    </a>
+                    <a href="#" class="tb-social-btn">
+                        <i class="ti ti-brand-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="tb-footer-bottom">
+            © 2026 Tiny Bliss Salon Spa & Massage. All Rights Reserved.
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="membership.js"></script>
+    <script src="navbar.js"></script>
+</body>
+</html>

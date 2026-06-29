@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Booking Spa & Massage</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#f8f4f0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+}
+
+.container{
+    width:450px;
+    background:white;
+    padding:25px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+h2{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+label{
+    display:block;
+    margin-top:10px;
+    font-weight:bold;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    padding:10px;
+    margin-top:5px;
+    border:1px solid #ccc;
+    border-radius:5px;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    margin-top:20px;
+    border:none;
+    background:#b8860b;
+    color:white;
+    border-radius:5px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+button:hover{
+    background:#996f00;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Booking Spa & Massage</h2>
+
+    <form id="bookingForm">
+
+        <label>Nama Lengkap</label>
+        <input type="text" id="nama" required>
+
+        <label>No HP</label>
+        <input type="tel" id="hp" required>
+
+        <label>Email</label>
+        <input type="email" id="email" required>
+
+        <label>Pilih Layanan</label>
+        <select id="layanan" required>
+            <option value="">-- Pilih Layanan --</option>
+            <option>Traditional Massage</option>
+            <option>Aromatherapy Massage</option>
+            <option>Hot Stone Massage</option>
+            <option>Body Scrub</option>
+            <option>Facial Treatment</option>
+        </select>
+
+        <label>Tanggal Booking</label>
+        <input type="date" id="tanggal" required>
+
+        <label>Jam Booking</label>
+        <input type="time" id="jam" required>
+
+        <label>Catatan Tambahan</label>
+        <textarea id="catatan" rows="4"></textarea>
+
+        <button type="submit">Booking Sekarang</button>
+
+    </form>
+</div>
+
+<script>
+document.getElementById("bookingForm").addEventListener("submit", function(event){
+    event.preventDefault();
+
+    let nama = document.getElementById("nama").value;
+    let layanan = document.getElementById("layanan").value;
+    let tanggal = document.getElementById("tanggal").value;
+    let jam = document.getElementById("jam").value;
+
+    alert(
+        "Booking Berhasil!\n\n" +
+        "Nama: " + nama + "\n" +
+        "Layanan: " + layanan + "\n" +
+        "Tanggal: " + tanggal + "\n" +
+        "Jam: " + jam
+    );
+
+    this.reset();
+});
+</script>
+
+</body>
+</html>
