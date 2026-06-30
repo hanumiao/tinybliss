@@ -63,3 +63,11 @@ window.addEventListener('load', function () {
         }, 3); // waktu alert akan muncul
     }
 });
+
+// Fungsi logout, dipanggil dari button manapun di halaman manapun
+function logout() {
+    localStorage.removeItem("username");
+    localStorage.removeItem("password");
+    localStorage.removeItem("fullname");
+    window.location.href = "login.html"; // ganti sesuai nama file login kamu
+}
