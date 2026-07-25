@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TinyBliss Spa — Booking</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:           #FBF7F0;
+      --cream-deep:       #F3ECE0;
+      --ink:             #262B22;
+      --ink-soft:        #5B6155;
+      --moss:            #38442F;
+      --moss-soft:       #5C6E4C;
+      --terracotta:      #C17A4E;
+      --terracotta-soft: #E7C5A6;
+      --line:            #E2D9C6;
+      --paper:           #FFFEFB;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--cream);
+      min-height: 100vh;
+      color: var(--ink);
+      line-height: 1.5;
+    }
+
+    .page {
+      max-width: 600px;
+      margin: 2rem auto;
+      background: var(--paper);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 24px rgba(38,43,34,0.10);
+    }
+
+    /* Header */
+    .spa-header {
+      text-align: center;
+      padding: 2.5rem 1.5rem 2rem;
+      background: var(--paper);
+      border-bottom: 1px solid var(--line);
+    }
+    .spa-logo {
+      display: inline-flex; align-items: center; justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .spa-logo img { height: 92px; width: auto; display: block; }
+    .spa-header h1 { font-size: 22px; font-weight: 600; letter-spacing: -0.3px; }
+    .spa-header p { font-size: 14px; color: var(--ink-soft); margin-top: 4px; }
+
+    /* Form wrap */
+    .form-wrap { padding: 1.5rem 1.75rem 2.5rem; }
+
+    .section-label {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+      color: var(--ink-soft); text-transform: uppercase;
+      margin: 1.75rem 0 0.75rem;
+    }
+    .section-label:first-child { margin-top: 0; }
+
+    /* Fields */
+    .field { margin-bottom: 1rem; }
+    .field label {
+      display: block; font-size: 13px; font-weight: 500;
+      color: var(--ink-soft); margin-bottom: 5px;
+    }
+    .field input, .field select, .field textarea {
+      width: 100%; padding: 10px 12px;
+      border: 1px solid var(--line); border-radius: 8px;
+      font-size: 14px; font-family: inherit;
+      background: var(--paper); color: var(--ink);
+      transition: border-color 0.15s, box-shadow 0.15s;
+      outline: none;
+    }
+    .field input:focus, .field select:focus, .field textarea:focus {
+      border-color: var(--moss);
+      box-shadow: 0 0 0 3px rgba(56,68,47,0.14);
+    }
+    .field textarea { resize: vertical; min-height: 80px; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+    /* Service cards */
+    .service-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+      margin-bottom: 1rem;
+    }
+    .service-card {
+      border: 1px solid var(--line); border-radius: 12px;
+      padding: 14px 16px; cursor: pointer;
+      background: var(--paper); position: relative;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .service-card:hover { border-color: var(--ink-soft); background: var(--cream-deep); }
+    .service-card.selected { border: 1.5px solid var(--moss); background: var(--cream-deep); }
+    .service-card input[type=radio] { position: absolute; opacity: 0; width: 0; height: 0; }
+    .service-name { font-size: 13px; font-weight: 600; color: var(--ink); display: block; }
+    .service-price { font-size: 12px; color: var(--ink-soft); margin-top: 2px; display: block; }
+    .service-card.selected .service-name { color: var(--moss); }
+    .service-card.selected .service-price { color: var(--moss-soft); }
+
+    /* Duration buttons */
+    .duration-grid { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1rem; }
+    .dur-btn {
+      border: 1px solid var(--line); border-radius: 99px;
+      padding: 7px 18px; font-size: 13px; cursor: pointer;
+      font-family: inherit; background: var(--paper); color: var(--ink-soft);
+      transition: all 0.15s;
+    }
+    .dur-btn:hover { border-color: var(--ink-soft); }
+    .dur-btn.active { border: 1.5px solid var(--moss); background: var(--cream-deep); color: var(--moss); font-weight: 600; }
+    .dur-btn:disabled {
+      opacity: 0.4; cursor: not-allowed; pointer-events: none;
+      background: var(--cream-deep); color: var(--ink-soft); text-decoration: line-through;
+      border-color: var(--line);
+    }
+    .duration-grid.pending .dur-btn:disabled {
+      text-decoration: none; opacity: 1;
+      background: var(--cream-deep); color: var(--ink-soft); border-color: var(--line);
+    }
+    .dur-hint { font-size: 12px; color: var(--ink-soft); margin: -4px 0 10px; }
+
+    /* Therapist */
+    .therapist-slider { display: flex; align-items: center; gap: 6px; margin-bottom: 1rem; }
+    .ther-nav {
+      flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%;
+      border: 1px solid var(--line); background: var(--paper); color: var(--ink-soft);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; font-size: 14px; padding: 0; transition: all 0.15s;
+    }
+    .ther-nav:hover { border-color: var(--moss); color: var(--moss); background: var(--cream-deep); }
+    .ther-nav:active { transform: scale(0.92); }
+    .therapist-row {
+      display: flex; gap: 10px; flex: 1; min-width: 0;
+      overflow-x: auto; scroll-behavior: smooth; scroll-snap-type: x proximity;
+      scrollbar-width: none; -ms-overflow-style: none;
+      padding: 2px 2px 4px;
+    }
+    .therapist-row::-webkit-scrollbar { display: none; }
+    .therapist-card {
+      flex: 0 0 104px; scroll-snap-align: start;
+      border: 1px solid var(--line); border-radius: 12px;
+      padding: 14px 8px; text-align: center; cursor: pointer;
+      background: var(--paper); transition: all 0.15s;
+    }
+    .therapist-card:hover { border-color: var(--ink-soft); background: var(--cream-deep); }
+    .therapist-card.selected { border: 1.5px solid var(--moss); background: var(--cream-deep); }
+    .therapist-avatar {
+      width: 44px; height: 44px; border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 600; margin-bottom: 7px;
+      color: var(--moss-soft); background: var(--cream-deep);
+    }
+    .therapist-card.selected .therapist-avatar { color: var(--ink); background: var(--terracotta-soft); }
+    .therapist-name { font-size: 12px; font-weight: 600; color: var(--ink); display: block; }
+    .therapist-spec { font-size: 11px; color: var(--ink-soft); display: block; margin-top: 2px; }
+    .therapist-card.selected .therapist-name { color: var(--moss); }
+
+    /* Add-ons */
+    .add-ons { display: flex; flex-direction: column; gap: 8px; margin-bottom: 1rem; }
+    .addon-item {
+      display: flex; align-items: center; gap: 12px;
+      border: 1px solid var(--line); border-radius: 10px;
+      padding: 12px 14px; cursor: pointer; background: var(--paper);
+      transition: all 0.15s; user-select: none;
+    }
+    .addon-item:hover { border-color: var(--ink-soft); }
+    .addon-item.checked { border-color: var(--moss); background: var(--cream-deep); }
+    .addon-item:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
+    .addon-check {
+      width: 20px; height: 20px; border-radius: 6px;
+      border: 1.5px solid var(--line); flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; color: transparent; background: var(--paper);
+      transition: all 0.15s;
+    }
+    .addon-item.checked .addon-check { background: var(--moss); border-color: var(--moss); color: var(--cream); }
+    .addon-info { flex: 1; }
+    .addon-name { font-size: 13px; font-weight: 600; color: var(--ink); }
+    .addon-item.checked .addon-name { color: var(--moss); }
+    .addon-desc { font-size: 12px; color: var(--ink-soft); margin-top: 1px; }
+    .addon-price { font-size: 13px; font-weight: 600; color: var(--ink-soft); white-space: nowrap; }
+    .addon-item.checked .addon-price { color: var(--moss-soft); }
+
+    /* Summary */
+    .summary-card {
+      background: var(--cream-deep); border-radius: 12px;
+      padding: 1.25rem; margin: 1.5rem 0;
+    }
+    .summary-row {
+      display: flex; justify-content: space-between;
+      font-size: 13px; color: var(--ink-soft); margin-bottom: 8px;
+    }
+    .summary-row.total {
+      border-top: 1px solid var(--line); padding-top: 10px;
+      margin-top: 4px; margin-bottom: 0;
+      font-size: 15px; font-weight: 600; color: var(--ink);
+    }
+    #sum-addon-label { flex: 1; padding-right: 12px; }
+    #sum-addon { flex-shrink: 0; white-space: nowrap; }
+
+    /* Submit button */
+    .book-btn {
+      width: 100%; padding: 14px;
+      background: var(--moss); color: var(--cream);
+      border: none; border-radius: 12px;
+      font-size: 15px; font-weight: 600; cursor: pointer;
+      font-family: inherit; letter-spacing: -0.1px;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      transition: background 0.15s, transform 0.1s;
+    }
+    .book-btn:hover { background: var(--ink); }
+    .book-btn:active { transform: scale(0.99); }
+
+    @media (max-width: 480px) {
+      .page { margin: 0; border-radius: 0; }
+      .row { grid-template-columns: 1fr; }
+      .service-grid { grid-template-columns: 1fr 1fr; }
+      .therapist-card { flex: 0 0 92px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page">
+  <div class="spa-header" id="header">
+    <div class="spa-logo"><img src="picture/tinyblisslogo.png" alt="Tinybliss"></div>
+    <h1>Message & Spa</h1>
+    <p>Pesan sesi relaksasi Anda</p>
+  </div>
+
+
+  <div class="form-wrap" id="form-wrap">
+
+     <div class="section-label">Data diri</div>
+    <div class="row">
+      <div class="field">
+        <label for="nama">Nama lengkap</label>
+        <input type="text" id="nama" placeholder="Nama Anda">
+      </div>
+      <div class="field">
+        <label for="hp">Nomor HP / WhatsApp</label>
+        <input type="tel" id="hp" placeholder="08xx xxxx xxxx">
+      </div>
+    </div>
+
+    <div class="section-label">Tanggal & waktu</div>
+    <div class="row">
+      <div class="field">
+        <label for="tgl">Tanggal</label>
+        <input type="date" id="tgl" onchange="updateJamOptions()">
+      </div>
+      <div class="field">
+        <label for="jam">Waktu</label>
+        <select id="jam">
+          <option value="">Pilih jam</option>
+          <option>09:00</option><option>10:00</option><option>11:00</option>
+          <option>13:00</option><option>14:00</option><option>15:00</option>
+          <option>16:00</option><option>17:00</option><option>18:00</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="section-label">Pilih layanan</div>
+    <div class="service-grid">
+      <label class="service-card" onclick="selectService(this, 'Traditional Massage', 150000)">
+        <input type="radio" name="service">
+        <span class="service-name">Traditional Massage</span>
+        <span class="service-price">Rp 150.000</span>
+      </label>
+      <label class="service-card" onclick="selectService(this, 'Aromatheraphy Massage', 200000)">
+        <input type="radio" name="service">
+        <span class="service-name">Aromatheraphy Massage</span>
+        <span class="service-price">Rp 200.000</span>
+      </label>
+      <label class="service-card" onclick="selectService(this, 'Hot Stone Massage', 280000)">
+        <input type="radio" name="service">
+        <span class="service-name">Hot Stone Massage</span>
+        <span class="service-price">Rp 280.000</span>
+      </label>
+      <label class="service-card" onclick="selectService(this, 'Body Scrub', 175000)">
+        <input type="radio" name="service">
+        <span class="service-name">Body Scrub</span>
+        <span class="service-price">Rp 175.000</span>
+      </label>
+      <label class="service-card" onclick="selectService(this, 'Body Mask', 120000)">
+        <input type="radio" name="service">
+        <span class="service-name">Body Mask</span>
+        <span class="service-price">Rp 120.000</span>
+      </label>
+      <label class="service-card" onclick="selectService(this, 'Flower Bath', 80000)">
+        <input type="radio" name="service">
+        <span class="service-name">Flower Bath</span>
+        <span class="service-price">Rp 80.000</span>
+      </label>
+      <label class="service-card" onclick="selectService(this, 'Foot Reflexology', 120000)">
+        <input type="radio" name="service">
+        <span class="service-name">Foot Reflexology</span>
+        <span class="service-price">Rp 120.000</span>
+      </label>
+      <label class="service-card" onclick="selectService(this, 'Bekam Theraphy', 150000)">
+        <input type="radio" name="service">
+        <span class="service-name">Bekam Theraphy</span>
+        <span class="service-price">Rp 150.000</span>
+      </label>
+      <label class="service-card" onclick="selectService(this, 'Relaxation Theraphy', 180000)">
+        <input type="radio" name="service">
+        <span class="service-name">Relaxation Theraphy</span>
+        <span class="service-price">Rp 180.000</span>
+      </label>
+      <label class="service-card" onclick="selectService(this, 'Luxury Spa Package', 550000)">
+        <input type="radio" name="service">
+        <span class="service-name">Luxury Spa Package</span>
+        <span class="service-price">Rp 550.000</span>
+      </label>
+      <label class="service-card" onclick="selectService(this, 'Couple Spa Package', 650000)">
+        <input type="radio" name="service">
+        <span class="service-name">LCouple Spa Package</span>
+        <span class="service-price">Rp 650.000</span>
+      </label>
+      <label class="service-card" onclick="selectService(this, 'Beauty Spa Package', 500000)">
+        <input type="radio" name="service">
+        <span class="service-name">Beauty Spa Package</span>
+        <span class="service-price">Rp 500.000</span>
+      </label>
+    </div>
+
+    <div class="section-label">Pilih terapis</div>
+    <div class="therapist-slider">
+      <button type="button" class="ther-nav" onclick="slideTherapist(-1)" aria-label="Geser ke kiri"><i class="ti ti-arrow-left"></i></button>
+      <div class="therapist-row" id="therapistRow">
+        <div class="therapist-card" onclick="selectTherapist(this)">
+          <div class="therapist-avatar">SA</div>
+          <span class="therapist-name">Sari Ayu</span>
+        </div>
+        <div class="therapist-card" onclick="selectTherapist(this)">
+          <div class="therapist-avatar">DW</div>
+          <span class="therapist-name">Dewi Wulan</span>
+        </div>
+        <div class="therapist-card" onclick="selectTherapist(this)">
+          <div class="therapist-avatar">RA</div>
+          <span class="therapist-name">Rani Astuti</span>
+        </div>
+        <div class="therapist-card" onclick="selectTherapist(this)">
+          <div class="therapist-avatar">PL</div>
+          <span class="therapist-name">Putri Lestari</span>
+        </div>
+        <div class="therapist-card" onclick="selectTherapist(this)">
+          <div class="therapist-avatar">AK</div>
+          <span class="therapist-name">Ayu Kirana</span>
+        </div>
+        <div class="therapist-card" onclick="selectTherapist(this)">
+          <div class="therapist-avatar">KS</div>
+          <span class="therapist-name">Komang Sri</span>
+        </div>
+        <div class="therapist-card" onclick="selectTherapist(this)">
+          <div class="therapist-avatar">AP</div>
+          <span class="therapist-name">Ayu Permata</span>
+        </div>
+        <div class="therapist-card" onclick="selectTherapist(this)">
+          <div class="therapist-avatar">WS</div>
+          <span class="therapist-name">Wulan Sari</span>
+        </div>
+      </div>
+      <button type="button" class="ther-nav" onclick="slideTherapist(1)" aria-label="Geser ke kanan"><i class="ti ti-arrow-right"></i></button>
+    </div>
+
+    <div class="section-label">Durasi</div>
+    <p class="dur-hint" id="durHint">Pilih layanan dulu untuk melihat durasi yang tersedia.</p>
+    <div class="duration-grid pending" id="durationGrid">
+      <button class="dur-btn" onclick="selectDur(this, '20 menit')">20 menit</button>
+      <button class="dur-btn" onclick="selectDur(this, '30 menit')">30 menit</button>
+      <button class="dur-btn" onclick="selectDur(this, '45 menit')">45 menit</button>
+      <button class="dur-btn" onclick="selectDur(this, '60 menit')">60 menit</button>
+      <button class="dur-btn" onclick="selectDur(this, '90 menit')">90 menit</button>
+      <button class="dur-btn" onclick="selectDur(this, '120 menit')">120 menit</button>
+      <button class="dur-btn" onclick="selectDur(this, '150 menit')">150 menit</button>
+      <button class="dur-btn" onclick="selectDur(this, '180 menit')">180 menit</button>
+    </div>
+
+    <div class="section-label">Add-on (opsional)</div>
+    <div class="add-ons">
+      <div class="addon-item" role="checkbox" tabindex="0" aria-checked="false"
+           onclick="toggleAddon(this)"
+           onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleAddon(this);}">
+        <div class="addon-check"><i class="ti ti-check"></i></div>
+        <div class="addon-info">
+          <div class="addon-name">Lulur Tubuh</div>
+          <div class="addon-desc">Scrub tradisional beras & kunyit</div>
+        </div>
+        <span class="addon-price">+Rp 35.000</span>
+      </div>
+      <div class="addon-item" role="checkbox" tabindex="0" aria-checked="false"
+           onclick="toggleAddon(this)"
+           onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleAddon(this);}">
+        <div class="addon-check"><i class="ti ti-check"></i></div>
+        <div class="addon-info">
+          <div class="addon-name">Reflexology</div>
+          <div class="addon-desc">Pijat refleksi kaki 30 menit</div>
+        </div>
+        <span class="addon-price">+Rp 50.000</span>
+      </div>
+      <div class="addon-item" role="checkbox" tabindex="0" aria-checked="false"
+           onclick="toggleAddon(this)"
+           onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleAddon(this);}">
+        <div class="addon-check"><i class="ti ti-check"></i></div>
+        <div class="addon-info">
+          <div class="addon-name">Face Massage</div>
+          <div class="addon-desc">Pijat wajah & kepala rileks</div>
+        </div>
+        <span class="addon-price">+Rp 25.000</span>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="catatan">Catatan khusus <span style="font-weight:400; color:var(--ink-soft)">(opsional)</span></label>
+      <textarea id="catatan" placeholder="Contoh: area yang ingin difokuskan, kondisi kesehatan, preferensi tekanan..."></textarea>
+    </div>
+
+    <div class="summary-card">
+      <div class="summary-row">
+        <span id="sum-service">Belum dipilih</span>
+        <span id="sum-base">Rp 0</span>
+      </div>
+      <div class="summary-row" id="addon-row" style="display:none;">
+        <span id="sum-addon-label">Add-on</span>
+        <span id="sum-addon">Rp 0</span>
+      </div>
+      <div class="summary-row total">
+        <span>Total</span>
+        <span id="sum-total">Rp 0</span>
+      </div>
+    </div>
+
+    <button class="book-btn" onclick="submitBooking()">
+      <i class="ti ti-calendar-check"></i>
+      Konfirmasi Booking
+    </button>
+  </div>
+</div>
+
+  <script src="booking.js"></script>
+</body>
+</html>

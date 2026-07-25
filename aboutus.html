@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tinny Bliss Spa — About Us</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.0.0/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.0.0/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.0.0/mapbox-gl.css" rel="stylesheet">
+
+<style>
+    /* ==========================================================================
+   ===== 1. CSS VARIABLES & PALETTE =====
+   ========================================================================== */
+:root {
+    --cream:            #FBF7F0;
+    --cream-deep:       #F0E8D8;
+    --cream-mid:        #F5EFE4;
+    --cream-dark:       #E2D9C6;
+    --terra:            #C17A4E;
+    --terra-dark:       #A8622E;
+    --terra-light:      #E7C5A6;
+    --terracotta:       #B86D42;
+    --terracotta-soft:  #DDB38A;
+    --terracotta-pale:  #F5E6D6;
+    --moss:             #38442F;
+    --moss-dark:        #262B22;
+    --moss-mid:         #445738;
+    --moss-light:       #5C6E4C;
+    --brown:            #5B6155;
+    --white:            #FFFEFB;
+    --ink:              #1E2219;
+    --ink-soft:         #5B6155;
+    --ink-faint:        #8E9487;
+    --gold:             #C9A96E;
+    --maroon:           #860010;
+    --line:             #DDD4BF;
+    --paper:            #FFFEFB;
+    --font-display:     'Fraunces', Georgia, serif;
+    --font-body:        'Plus Jakarta Sans', sans-serif;
+    --radius:           12px;
+    --radius-sm:        8px;
+    --shadow:           0 4px 24px rgba(38,43,34,.08);
+    --shadow-md:        0 8px 40px rgba(38,43,34,.13);
+}
+
+/* ==========================================================================
+   ===== 2. GLOBAL RESET & BASE STYLES =====
+   ========================================================================== */
+*, *::before, *::after { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+}
+
+html { 
+    scroll-behavior: smooth; 
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif; /* Diselaraskan dengan font utama */
+    background-color: #fcfbfa;
+    color: #4a4a4a;
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+/* Reusable Section Header Component */
+.au-section-header {
+    margin-bottom: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+}
+
+.au-section-title {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: clamp(28px, 3.5vw, 44px);
+    font-weight: 400;
+    color: var(--ink);
+    letter-spacing: -.01em;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.au-section-title em {
+    font-style: italic;
+    color: var(--terracotta);
+}
+
+.au-section-title--light {
+    color: var(--paper);
+}
+
+.au-section-sub {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: var(--ink-soft);
+    font-size: 15px;
+    font-weight: 300;
+    margin: 8px 0 0;
+}
+
+
+/* ==========================================================================
+   ===== 3. NAVBAR =====
+   ========================================================================== */
+.navbar-custom {
+    background: #F9F1E6;
+    padding-top: 0;
+    padding-bottom: 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+.navbar-brand img {
+    height: 90px;
+    width: auto;
+}
+
+.navbar-brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+}
+
+.navbar-brand-name {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 18px;
+    color: var(--moss-light);
+    letter-spacing: .01em;
+}
+
+.navbar-brand-tagline {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--terra);
+}
+
+.navbar-nav .nav-link {
+    color: #3a2a1a;
+    font-weight: 500;
+    font-size: 1.05rem;
+    transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+    color: #860010;
+}
+
+/* User Account Block di Navbar */
+.nav-user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 12px;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.nav-user:hover {
+    background: var(--cream-deep);
+}
+
+.nav-user-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--moss-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 18px;
+}
+
+.nav-user-info {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.nav-user-greeting {
+    font-size: 11px;
+    color: var(--ink-soft);
+    letter-spacing: .04em;
+    text-transform: uppercase;
+}
+
+.nav-user-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink);
+}
+.btn-logout {
+    background: transparent;
+    border: 1.5px solid var(--terra);
+    color: var(--terra);
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background .2s, color .2s, transform .15s;
+    margin-left: 4px;
+    flex-shrink: 0;
+}
+
+.btn-logout:hover {
+    background: var(--terra);
+    color: var(--white);
+    transform: translateY(-1px);
+}
+
+.btn-logout:active {
+    transform: translateY(0);
+}
+
+/* ==========================================================================
+   ===== 4. HERO SECTION =====
+   ========================================================================== */
+.au-hero {
+    background: var(--cream);
+    padding: 130px 60px 80px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+.au-hero-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    width: 100%;
+}
+
+.au-eyebrow {
+    display: inline-block;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 20px;
+}
+
+.au-eyebrow--dark {
+    color: var(--moss-light);
+}
+
+.au-hero-title {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: clamp(40px, 5vw, 64px);
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 24px;
+    letter-spacing: -.01em;
+}
+
+.au-hero-title em {
+    font-style: italic;
+    color: var(--terracotta);
+}
+
+.au-hero-sub {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 17px;
+    font-weight: 300;
+    color: var(--ink-soft);
+    line-height: 1.8;
+    max-width: 460px;
+    margin-bottom: 48px;
+}
+
+/* Stats Inside Hero */
+.au-hero-stats {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.au-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.au-stat-num {
+    font-family: 'Fraunces', serif;
+    font-size: 32px;
+    font-weight: 500;
+    color: var(--moss);
+    line-height: 1;
+}
+
+.au-stat-label {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+}
+
+.au-stat-divider {
+    width: 1px;
+    height: 40px;
+    background: var(--line);
+}
+
+/* Image Frame Elements Inside Hero */
+.au-img-frame {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+}
+
+.au-img-frame img {
+    width: 100%;
+    height: 540px;
+    object-fit: cover;
+    display: block;
+    border-radius: 24px;
+}
+
+/* Scroll Hint Inside Hero */
+.au-hero-scroll-hint {
+    position: absolute;
+    bottom: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    color: var(--ink-faint);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    animation: bobDown 2s ease-in-out infinite;
+}
+
+@keyframes bobDown {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50%       { transform: translateX(-50%) translateY(6px); }
+}
+
+
+/* ==========================================================================
+   ===== 5. ABOUT & STORY SECTION =====
+   ========================================================================== */
+.au-story {
+    background: var(--cream);
+    padding: 100px 60px;
+    border-top: 1px solid var(--line);
+}
+
+.au-story-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.au-story-imgs {
+    position: relative;
+    height: 520px;
+}
+
+.au-story-img-main {
+    position: absolute;
+    top: 0; left: 0;
+    width: 78%;
+    height: 80%;
+    object-fit: cover;
+    border-radius: 20px;
+    display: block;
+}
+
+.au-story-img-accent {
+    position: absolute;
+    bottom: 0; right: 0;
+    width: 50%;
+    height: 50%;
+    object-fit: cover;
+    border-radius: 16px;
+    border: 6px solid var(--paper);
+    display: block;
+}
+
+.au-story-text-col {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.au-story-text-col p {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--ink-soft);
+    line-height: 1.85;
+    margin: 0;
+}
+
+.au-story-text-col strong {
+    font-weight: 600;
+    color: var(--moss);
+}
+
+
+/* ==========================================================================
+   ===== 6. CAROUSEL & GALLERY SECTION =====
+   ========================================================================== */
+.au-gallery {
+  background: var(--moss);
+  padding: 90px 60px;
+}
+.au-gallery-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.au-gallery .au-section-header { margin-bottom: 48px; }
+.au-gallery .au-eyebrow { color: var(--gold); }
+
+/* Carousel wrap */
+.au-carousel-wrap { position: relative; max-width: 900px; margin: 0 auto; }
+.au-carousel-viewport {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+}
+.au-slides {
+  display: flex;
+  transition: transform .7s cubic-bezier(.77,0,.175,1);
+}
+.au-slide { min-width: 100%; position: relative; }
+
+.au-carousel-img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Caption */
+.au-caption-bar {
+  position: absolute;
+  bottom: 24px; left: 24px; right: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.au-caption-label {
+  background: rgba(20,24,16,.65);
+  backdrop-filter: blur(10px);
+  color: var(--cream);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  padding: 8px 18px;
+  border-radius: 50px;
+  border: 1px solid rgba(255,255,255,.08);
+}
+.au-caption-count {
+  background: rgba(20,24,16,.65);
+  backdrop-filter: blur(10px);
+  color: var(--gold);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  padding: 8px 14px;
+  border-radius: 50px;
+  border: 1px solid rgba(255,255,255,.08);
+}
+
+/* Progress bar */
+.au-progress-track {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: rgba(255,255,255,.12);
+}
+.au-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold), #e8c97a);
+  width: 0%;
+}
+
+/* Nav buttons */
+.au-nav-btn {
+  position: absolute;
+  top: 50%; transform: translateY(-50%);
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  border: none;
+  background: var(--paper);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: background .2s, transform .2s;
+  box-shadow: 0 2px 16px rgba(0,0,0,.25);
+}
+.au-nav-btn:hover {
+  background: var(--gold);
+  transform: translateY(-50%) scale(1.08);
+}
+.au-nav-btn i { font-size: 20px; color: var(--moss); }
+.au-nav-prev { left: -22px; }
+.au-nav-next { right: -22px; }
+
+/* Dots */
+.au-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+.au-dots button {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--gold);
+  opacity: .3;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: all .35s;
+}
+.au-dots button.active {
+  opacity: 1;
+  width: 24px;
+  border-radius: 4px;
+}
+
+/* Thumbnails */
+.au-thumbs {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.au-thumbs::-webkit-scrollbar { display: none; }
+.au-thumb {
+  width: 90px; height: 60px;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  opacity: .4;
+  border: 2px solid transparent;
+  transition: all .3s;
+  flex-shrink: 0;
+}
+.au-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.au-thumb.active { opacity: 1; border-color: var(--gold); }
+.au-thumb:hover { opacity: .75; }
+
+/* ==========================================================================
+   ===== 7. REVIEWS & RATING TABLE =====
+   ========================================================================== */
+.au-reviews {
+    background: var(--cream-deep);
+    padding: 100px 60px;
+    border-top: 1px solid var(--line);
+}
+
+.au-reviews-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.au-table-wrap {
+    overflow-x: auto;
+    border-radius: 20px;
+    box-shadow: 0 4px 32px rgba(47,61,38,.09);
+}
+
+.au-rating-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--paper);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.au-rating-table thead tr {
+    background: var(--moss);
+}
+
+.au-rating-table thead th {
+    color: var(--cream-mid);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    padding: 18px 20px;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.au-rating-table tbody tr {
+    border-bottom: 1px solid var(--line);
+    transition: background .18s;
+}
+
+.au-rating-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.au-rating-table tbody tr:hover {
+    background: var(--cream-mid);
+}
+
+.au-rating-table tbody tr:nth-child(even) {
+    background: var(--cream);
+}
+
+.au-rating-table tbody tr:nth-child(even):hover {
+    background: var(--cream-mid);
+}
+
+.au-rating-table td {
+    padding: 18px 20px;
+    vertical-align: middle;
+}
+
+.au-td-num {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--terracotta-soft);
+    font-style: italic;
+    white-space: nowrap;
+}
+
+.au-td-user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.au-rating-table .au-review-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--cream-deep);
+    color: var(--moss-mid);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    flex-shrink: 0;
+    border: 1.5px solid var(--line);
+}
+
+.au-td-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+    white-space: nowrap;
+}
+
+/* Status Badges inside Table */
+.au-status {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .06em;
+    padding: 4px 12px;
+    border-radius: 50px;
+    white-space: nowrap;
+}
+
+.au-status--setia {
+    background: #EAF0E4;
+    color: var(--moss-mid);
+}
+
+.au-status--gold {
+    background: #F5E6D6;
+    color: var(--terracotta);
+}
+
+.au-status--silver {
+    background: #F0EBE0;
+    color: var(--ink-soft);
+}
+
+.au-status--baru {
+    background: #F0F4EC;
+    color: var(--moss-light);
+}
+
+/* Rating Cell inside Table */
+.au-td-rating {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.au-td-stars {
+    color: var(--gold);
+    font-size: 14px;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+
+.au-td-score {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink-soft);
+}
+
+.au-td-comment {
+    font-size: 13.5px;
+    font-weight: 300;
+    color: var(--ink-soft);
+    line-height: 1.7;
+    font-style: italic;
+}
+
+.au-rating-table tbody tr {
+    transition: all .25s ease;
+}
+
+.au-rating-table tbody tr:hover {
+    transform: translateY(-2px);
+    box-shadow: inset 4px 0 0 var(--terracotta-soft);
+}
+
+.au-td-comment {
+    max-width: 500px;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.au-td-rating {
+    min-width: 90px;
+}
+
+.au-td-score {
+    background: var(--cream-deep);
+    padding: 4px 10px;
+    border-radius: 30px;
+}
+
+.au-review-avatar {
+    background: linear-gradient(
+        135deg,
+        var(--terracotta-soft),
+        var(--moss-light)
+    ) !important;
+    color: white !important;
+    border: none !important;
+}
+
+/* ==========================================================================
+   ===== 8. CTA STRIP SECTION =====
+   ========================================================================== */
+.au-cta-strip {
+    background: var(--terracotta);
+    padding: 64px 60px;
+}
+
+.au-cta-strip-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.au-cta-strip h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--paper);
+    margin: 0 0 8px;
+    letter-spacing: -.01em;
+}
+
+.au-cta-strip p {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    color: rgba(255,254,251,.8);
+    margin: 0;
+}
+
+.au-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: .06em;
+    color: var(--terracotta);
+    background: var(--paper);
+    border-radius: 50px;
+    padding: 14px 32px;
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: opacity .2s;
+}
+
+.au-btn-primary:hover { 
+    opacity: .9; 
+    color: var(--terracotta); 
+}
+
+.au-btn-primary i { 
+    font-size: 18px; 
+}
+
+
+/* ==========================================================================
+   ===== 9. FOOTER =====
+   ========================================================================== */
+.tb-footer {
+    background: #F7F4EF;
+    border-top: 2px solid #C8A16B;
+}
+
+.tb-footer-container {
+    max-width: 1300px;
+    margin: auto;
+    padding: 50px 30px;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr 1fr;
+    gap: 50px;
+}
+
+.tb-footer-title {
+    color: #C9A96E;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.tb-footer-container > div {
+    text-align: center;
+}
+
+.tb-footer-container > div:first-child {
+    text-align: left;
+}
+
+.tb-footer-text,
+.tb-contact-item {
+    color: #4A5139;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.tb-logo {
+    width: 220px;
+    height: auto;
+    object-fit: contain;
+}
+
+.tb-contact-wrapper {
+    text-align: center;
+}
+
+.tb-contact-item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 5px;
+    margin-bottom: 12px;
+}
+
+.tb-contact-item i {
+    color: #B75A3C;
+    font-size: 20px;
+}
+
+.tb-contact-item a {
+    color: #B75A3C;
+    text-decoration: none;
+}
+
+/* Social Media Buttons inside Footer */
+.tb-socials {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.tb-social-btn {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #C8A16B;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: .3s;
+}
+
+.tb-social-btn i {
+    color: #6D7550;
+    font-size: 22px;
+}
+
+.tb-social-btn:hover {
+    background: #B75A3C;
+    border-color: #B75A3C;
+}
+
+.tb-social-btn:hover i {
+    color: white;
+}
+
+/* Footer Bottom Strip */
+.tb-footer-bottom {
+    border-top: 1px solid rgba(109,117,80,.2);
+    text-align: center;
+    padding: 20px;
+    color: #6D7550;
+    font-size: 14px;
+}
+
+
+/* ==========================================================================
+   ===== 10. MEDIA QUERIES / RESPONSIVE BREAKPOINTS =====
+   ========================================================================== */
+@media (max-width: 991px) {
+    .navbar-collapse {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;   
+    }
+    .navbar-nav {
+        margin-left: 0 !important;  
+        margin-right: 0 !important;
+        width: 100%;
+    }
+    .nav-user {
+        order: -1;
+        align-self: flex-start;     
+        margin-bottom: 12px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid rgba(0,0,0,.08);
+        width: fit-content;
+    }
+    .navbar-brand img {
+        height: 70px;
+    }
+    .nav-user-avatar {
+        width: 38px;
+        height: 38px;
+        font-size: 16px;
+    }
+    .nav-user-name {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 900px) {
+    .tb-footer-container { 
+        grid-template-columns: 1fr 1fr; 
+        gap: 36px; 
+    }
+    .tb-logo { 
+        margin: 0 auto; 
+        display: block; 
+    }
+    .tb-footer-container > div,
+    .tb-contact-wrapper { 
+        text-align: center; 
+    }
+    .tb-footer-container > div:first-child {
+        text-align: center;
+    }
+    .tb-socials,
+    .tb-contact-item { 
+        justify-content: center; 
+    }
+}
+
+@media (max-width: 768px) {
+    .au-hero { padding: 110px 24px 60px; min-height: auto; }
+    .au-hero-inner { grid-template-columns: 1fr; gap: 40px; }
+    .au-img-frame img { height: 320px; }
+    .au-hero-stats { gap: 20px; }
+    .au-hero-scroll-hint { display: none; }
+
+    /* Aturan responsif au-values dihapus */
+
+    .au-story { padding: 64px 24px; }
+    .au-story-inner { grid-template-columns: 1fr; gap: 40px; }
+    .au-story-imgs { height: 280px; }
+
+    .au-gallery { padding: 64px 24px; }
+    .au-carousel-img { height: 280px; }
+    .au-carousel-btn { display: none; }
+
+    .au-reviews { padding: 64px 24px; }
+
+    .au-rating-table thead th:nth-child(3) { display: none; }
+    .au-rating-table tbody td:nth-child(3) { display: none; }
+
+    .au-cta-strip { padding: 48px 24px; }
+    .au-cta-strip-inner { flex-direction: column; text-align: center; }
+}
+
+@media (max-width: 540px) {
+    .tb-footer-container { 
+        grid-template-columns: 1fr; 
+        gap: 30px;
+    }
+}
+</style>
+</head>
+<body>
+
+    <header>
+    <nav class="navbar navbar-expand-lg px-3 px-md-5 fixed-top navbar-custom"> 
+    <a class="navbar-brand" href="index.html"> 
+        <img src="picture/tinyblisslogo.png" alt="Tiny Bliss"> 
+        <div class="navbar-brand-text"> 
+            <span class="navbar-brand-name">TinyBliss</span> 
+            <span class="navbar-brand-tagline">Spa &amp; Massage</span> 
+        </div> 
+    </a> 
+    <button class="navbar-toggler ms-auto me-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation"> 
+        <span class="navbar-toggler-icon"></span> 
+    </button> 
+    <div class="collapse navbar-collapse" id="navbarMenu"> 
+    <ul class="navbar-nav mx-auto gap-lg-3"> 
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li> 
+        <li class="nav-item"><a class="nav-link active" href="aboutUs.html">About Us</a></li> 
+        <li class="nav-item"><a class="nav-link" href="service.html">Service</a></li> 
+        <li class="nav-item"><a class="nav-link" href="membership.html">Member</a></li> 
+        <li class="nav-item"><a class="nav-link" href="booking.html">Booking</a></li> 
+    </ul> 
+    <div class="nav-user ms-lg-3" href="#">
+        <div class="nav-user-avatar"><i class="ti ti-user"></i></div>
+        <div class="nav-user-info">
+            <span class="nav-user-greeting">Selamat datang</span>
+            <span id="fullname"></span>
+        </div>
+        <button class="btn-logout" onclick="logout()" title="Logout">
+            <i class="ti ti-logout"></i>
+        </button>
+    </div>
+    </div>
+    </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="au-hero">
+        <div class="au-hero-inner">
+            <div class="au-hero-text">
+                <span class="au-eyebrow">Our Story</span>
+                <h1 class="au-hero-title">Tempat di mana<br><em>ketenangan</em> dimulai</h1>
+                <p class="au-hero-sub">Sejak pertama kali kami membuka pintu, satu hal selalu menjadi inti dari segalanya merawat Anda dengan sepenuh hati.</p>
+                <div class="au-hero-stats">
+                    <div class="au-stat">
+                        <span class="au-stat-num">6+</span>
+                        <span class="au-stat-label">Tahun Pengalaman</span>
+                    </div>
+                    <div class="au-stat-divider"></div>
+                    <div class="au-stat">
+                        <span class="au-stat-num">2.800+</span>
+                        <span class="au-stat-label">Pelanggan Bahagia</span>
+                    </div>
+                    <div class="au-stat-divider"></div>
+                    <div class="au-stat">
+                        <span class="au-stat-num">12</span>
+                        <span class="au-stat-label">Layanan Tersedia</span>
+                    </div>
+                </div>
+            </div>
+            <div class="au-hero-visual">
+                <div class="au-img-frame">
+                    <img src="picture/16.png" alt="Suasana Spa TinyBliss">
+                </div>
+            </div>
+        </div>
+        <div class="au-hero-scroll-hint">
+            <span>Scroll</span>
+            <i class="ti ti-arrow-down"></i>
+        </div>
+    </section>
+
+    <!-- STORY -->
+    <section class="au-story">
+        <div class="au-story-inner">
+            <div class="au-story-img-col">
+                <div class="au-story-imgs">
+                    <img class="au-story-img-main" src="picture/17.png" alt="tamu spa">
+                    <img class="au-story-img-accent" src="picture/18.png" alt="bahan spa">
+                </div>
+            </div>
+            <div class="au-story-text-col">
+                <span class="au-eyebrow au-eyebrow--dark">Tentang Kami</span>
+                <h2 class="au-section-title">Selamat datang di <em>TinyBliss</em></h2>
+                <p>TinyBliss lahir dari keyakinan sederhana: setiap orang berhak mendapatkan momen istirahat yang sesungguhnya. Di tengah kesibukan sehari-hari, kami hadir sebagai ruang untuk kembali ke diri sendiri.</p>
+                <p>Kami menghadirkan <strong>massage, spa, therapy, package</strong>, dan berbagai perawatan tubuh yang dirancang tidak hanya menyentuh permukaan tapi memulihkan dari dalam.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- GALERI -->
+    <section class="au-gallery">
+        <div class="au-gallery-inner">
+            <div class="au-section-header">
+                <span class="au-eyebrow">Galeri</span>
+                <h2 class="au-section-title au-section-title--light">Sekilas suasana kami</h2>
+            </div>
+
+            <div class="au-carousel-wrap">
+                <div class="au-carousel-viewport">
+                    <div class="au-slides" id="auSlides">
+                        <div class="au-slide">
+                            <img src="picture/19.png" class="au-carousel-img" alt="Area Transisi Outdoor">
+                            <div class="au-caption-bar">
+                                <span class="au-caption-label">Area Transisi Outdoor</span>
+                                <span class="au-caption-count" id="auCount">1 / 5</span>
+                            </div>
+                        </div>
+                        <div class="au-slide">
+                            <img src="picture/20.png" class="au-carousel-img" alt="Paviliun Pijat Terbuka">
+                            <div class="au-caption-bar">
+                                <span class="au-caption-label">Paviliun Pijat Terbuka</span>
+                                <span class="au-caption-count">1 / 5</span>
+                            </div>
+                        </div>
+                        <div class="au-slide">
+                            <img src="picture/21.png" class="au-carousel-img" alt="Area Ritual Pencucian Kaki">
+                            <div class="au-caption-bar">
+                                <span class="au-caption-label">Area Ritual Pencucian Kaki</span>
+                                <span class="au-caption-count">1 / 5</span>
+                            </div>
+                        </div>
+                        <div class="au-slide">
+                            <img src="picture/22.png" class="au-carousel-img" alt="Ruang Terapi Privat">
+                            <div class="au-caption-bar">
+                                <span class="au-caption-label">Ruang Terapi Privat</span>
+                                <span class="au-caption-count">1 / 5</span>
+                            </div>
+                        </div>
+                        <div class="au-slide">
+                            <img src="picture/23.png" class="au-carousel-img" alt="Ruang Terapi Pasangan">
+                            <div class="au-caption-bar">
+                                <span class="au-caption-label">Ruang Terapi Pasangan</span>
+                                <span class="au-caption-count">1 / 5</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="au-progress-track">
+                        <div class="au-progress-bar" id="auPbar"></div>
+                    </div>
+                    <button class="au-nav-btn au-nav-prev" id="auPrev" aria-label="Sebelumnya">
+                        <i class="ti ti-chevron-left"></i>
+                    </button>
+                    <button class="au-nav-btn au-nav-next" id="auNext" aria-label="Berikutnya">
+                        <i class="ti ti-chevron-right"></i>
+                    </button>
+                </div>
+                <div class="au-dots" id="auDots"></div>
+                <div class="au-thumbs" id="auThumbs"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ULASAN -->
+    <section class="au-reviews">
+        <div class="au-reviews-inner">
+            <div class="au-section-header">
+                <span class="au-eyebrow au-eyebrow--dark">Ulasan</span>
+                <h2 class="au-section-title">Apa kata mereka</h2>
+                <p class="au-section-sub">Kepercayaan pelanggan adalah penghargaan terbesar kami</p>
+            </div>
+
+            <div class="au-table-wrap">
+                <table class="au-rating-table">
+                    <thead>
+                        <tr>
+                            <th style="width:5%">#</th>
+                            <th style="width:20%">Pelanggan</th>
+                            <th style="width:12%">Status</th>
+                            <th style="width:13%">Rating</th>
+                            <th>Komentar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="au-td-num">01</td>
+                            <td>
+                                <div class="au-td-user">
+                                    <div class="au-review-avatar">SD</div>
+                                    <span class="au-td-name">Sari Dewi</span>
+                                </div>
+                            </td>
+                            <td><span class="au-status au-status--baru">Pelanggan Baru</span></td>
+                            <td>
+                                <div class="au-td-rating">
+                                    <span class="au-td-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                                    <span class="au-td-score">5.0</span>
+                                </div>
+                            </td>
+                            <td class="au-td-comment">Awalnya cuma mau coba sekali, ternyata malah ketagihan. Terapisnya ramah dan pijatannya pas banget, nggak terlalu keras tapi tetap terasa manfaatnya. Tempatnya juga bersih dan bikin nyaman. Bakal balik lagi sih!</td>
+                        </tr>
+                        <tr>
+                            <td class="au-td-num">02</td>
+                            <td>
+                                <div class="au-td-user">
+                                    <div class="au-review-avatar">BS</div>
+                                    <span class="au-td-name">Budi Santoso</span>
+                                </div>
+                            </td>
+                            <td><span class="au-status au-status--gold">Member Gold</span></td>
+                            <td>
+                                <div class="au-td-rating">
+                                    <span class="au-td-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                                    <span class="au-td-score">5.0</span>
+                                </div>
+                            </td>
+                            <td class="au-td-comment">Habis reflexology di sini badan rasanya langsung enteng. Kaki yang tadinya pegal karena banyak aktivitas jadi jauh lebih enakan. Suasananya tenang, cocok banget buat yang mau relaks sejenak dari rutinitas.</td>
+                        </tr>
+                        <tr>
+                            <td class="au-td-num">03</td>
+                            <td>
+                                <div class="au-td-user">
+                                    <div class="au-review-avatar">RK</div>
+                                    <span class="au-td-name">Ratna Kumala</span>
+                                </div>
+                            </td>
+                            <td><span class="au-status au-status--setia">Pelanggan Setia</span></td>
+                            <td>
+                                <div class="au-td-rating">
+                                    <span class="au-td-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                                    <span class="au-td-score">5.0</span>
+                                </div>
+                            </td>
+                            <td class="au-td-comment">Sempat coba Hot Stone Therapy dan ternyata senyaman itu. Hangat batu terapinya bikin otot yang tegang jadi lebih rileks. Pulangnya langsung tidur nyenyak, besoknya bangun badan terasa segar.</td>
+                        </tr>
+                        <tr>
+                            <td class="au-td-num">04</td>
+                            <td>
+                                <div class="au-td-user">
+                                    <div class="au-review-avatar">HW</div>
+                                    <span class="au-td-name">Hendra Wijaya</span>
+                                </div>
+                            </td>
+                            <td><span class="au-status au-status--silver">Member Silver</span></td>
+                            <td>
+                                <div class="au-td-rating">
+                                    <span class="au-td-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                                    <span class="au-td-score">5.0</span>
+                                </div>
+                            </td>
+                            <td class="au-td-comment">Aromatherapy Massage-nya juara! Wanginya bikin rileks dan bikin pikiran lebih tenang. Selama treatment rasanya benar-benar bisa lepas dari stres dan capek setelah kerja seharian.</td>
+                        </tr>
+                        <tr>
+                            <td class="au-td-num">05</td>
+                            <td>
+                                <div class="au-td-user">
+                                    <div class="au-review-avatar">AP</div>
+                                    <span class="au-td-name">Anisa Putri</span>
+                                </div>
+                            </td>
+                            <td><span class="au-status au-status--baru">Pelanggan Baru</span></td>
+                            <td>
+                                <div class="au-td-rating">
+                                    <span class="au-td-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                                    <span class="au-td-score">4.0</span>
+                                </div>
+                            </td>
+                            <td class="au-td-comment">Tempatnya nyaman, pelayanannya juga oke. Menurutku harganya masih worth it dengan kualitas yang didapat. Cocok banget buat me time atau self-care pas akhir pekan.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA STRIP -->
+    <section class="au-cta-strip">
+        <div class="au-cta-strip-inner">
+            <div>
+                <h2>Siap untuk memanjakan diri?</h2>
+                <p>Booking sekarang dan nikmati sesi pertama Anda dengan penawaran spesial.</p>
+            </div>
+            <a href="booking.html" class="au-btn-primary">Pesan Sekarang <i class="ti ti-arrow-right"></i></a>
+        </div>
+    </section>
+
+    <section class="au-location">
+    <div style="max-width:1100px; margin:0 auto; padding:40px 20px;">
+        <h2 class="au-section-title">Lokasi Kami</h2>
+        <div id="tb-map" style="width:100%; height:350px; border-radius:12px; margin-top:16px; overflow:hidden;"></div>
+    </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="tb-footer">
+        <div class="tb-footer-container">
+            <div>
+                <img src="picture/tinyblisslogo.png" alt="Tiny Bliss" class="tb-logo">
+            </div>
+            <div>
+                <h3 class="tb-footer-title">Alamat Kami</h3>
+                <div class="tb-footer-text">
+                    <p>Tiny Bliss Salon Spa &amp; Massage</p>
+                    <p>Yogyakarta, Indonesia</p>
+                </div>
+            </div>
+            <div>
+                <h3 class="tb-footer-title">Hubungi Kami</h3>
+                <div class="tb-contact-wrapper">
+                    <div class="tb-contact-item">
+                        <i class="ti ti-brand-whatsapp"></i>
+                        <a href="https://wa.me/6285141129477">085141129477</a>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h3 class="tb-footer-title">Follow Us</h3>
+                <div class="tb-socials">
+                    <a href="#" class="tb-social-btn"><i class="ti ti-brand-facebook"></i></a>
+                    <a href="#" class="tb-social-btn"><i class="ti ti-brand-tiktok"></i></a>
+                    <a href="#" class="tb-social-btn"><i class="ti ti-brand-youtube"></i></a>
+                    <a href="#" class="tb-social-btn"><i class="ti ti-brand-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="tb-footer-bottom">
+            &copy; 2026 Tiny Bliss Salon Spa &amp; Massage. All Rights Reserved.
+        </div>
+    </footer>
+
+    <script src="config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.0.0/mapbox-gl.js"></script>
+    <script src="navbar.js"></script>
+    <script src="aboutus.js"></script>
+</body>
+</html>

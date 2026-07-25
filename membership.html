@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TinyBliss Membership</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@300;400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+:root {
+    --cream:            #FBF7F0;
+    --cream-deep:       #F3ECE0;
+    --ink:              #262B22;
+    --ink-soft:         #5B6155;
+    --moss:             #38442F;
+    --moss-soft:        #5C6E4C;
+    --terracotta:       #C17A4E;
+    --terracotta-soft:  #E7C5A6;
+    --line:             #E2D9C6;
+    --paper:            #FFFEFB;
+    --transition-smooth: 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.7;
+    padding-top: 70px;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Fraunces', serif;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Global Section Layout */
+.membership-section, .plans, .cta {
+    padding: 80px 0;
+}
+
+.section-head, .section-title {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-head h2, .section-title h2 {
+    font-size: clamp(2rem, 4vw, 2.6rem);
+    color: var(--moss);
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.section-head p, .section-title p {
+    color: var(--ink-soft);
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: clamp(0.95rem, 2vw, 1.1rem);
+}
+
+/* ==========================================================================
+   1. PREMIUM NAVIGATION BAR
+   ========================================================================== */
+.navbar-custom {
+    background: #F9F1E6;
+    padding-top: 0;
+    padding-bottom: 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+.navbar-brand img {
+    height: 90px;
+    width: auto;
+    transition: var(--transition-smooth);
+}
+
+.navbar-brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+}
+
+.navbar-brand-name {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 18px;
+    color: var(--moss-soft);
+    letter-spacing: .01em;
+}
+
+.navbar-brand-tagline {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+}
+
+.navbar-nav .nav-link {
+    color: #3a2a1a;
+    font-weight: 500;
+    font-size: 1.05rem;
+    transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+    color: #860010;
+}
+
+/* User Account Block */
+.nav-user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 12px;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.nav-user:hover {
+    background: var(--cream-deep);
+}
+
+.nav-user-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--moss-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 18px;
+}
+
+.nav-user-info {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.nav-user-greeting {
+    font-size: 11px;
+    color: var(--ink-soft);
+    letter-spacing: .04em;
+    text-transform: uppercase;
+}
+
+.nav-user-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink);
+}
+.btn-logout {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    border: 1.5px solid var(--terracotta);
+    color: var(--terracotta);
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background .2s, color .2s, transform .15s;
+    margin-left: 4px;
+    flex-shrink: 0;
+}
+
+.btn-logout:hover {
+    background: var(--terracotta);
+    color: var(--paper);
+    transform: translateY(-1px);
+}
+
+.btn-logout:active {
+    transform: translateY(0);
+}
+/* ==========================================================================
+   2. IMMERSIVE HERO SECTION
+   ========================================================================== */
+.hero {
+    position: relative;
+    height: 85vh;
+    min-height: 500px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.hero-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 1;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.55));
+    z-index: 2;
+}
+
+.hero-content {
+    position: relative;
+    width: 90%;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    color: #fff;
+    z-index: 3;
+}
+
+.eyebrow {
+    display: inline-block;
+    padding: 8px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 50px;
+    margin-bottom: 25px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.hero-title {
+    font-size: clamp(2.2rem, 6vw, 4.2rem);
+    line-height: 1.15;
+    margin-bottom: 25px;
+    font-weight: 400;
+}
+
+.hero-title em {
+    color: var(--terracotta-soft);
+    font-style: italic;
+}
+
+.hero-desc {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    line-height: 1.8;
+    max-width: 650px;
+    margin: 0 auto;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+/* ==========================================================================
+   3. EXCLUSIVE BENEFITS SECTION
+   ========================================================================== */
+.benefit-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 25px;
+}
+
+.benefit-card {
+    background: var(--paper);
+    padding: 40px 30px;
+    border-radius: 20px;
+    border: 1px solid var(--line);
+    transition: var(--transition-smooth);
+}
+
+.benefit-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 35px rgba(56, 68, 47, 0.07);
+}
+
+.benefit-card i {
+    font-size: 42px;
+    color: var(--terracotta);
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+.benefit-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+    color: var(--moss);
+}
+
+.benefit-card p {
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+    margin-bottom: 0;
+}
+
+/* ==========================================================================
+   4. MEMBERSHIP PLANS CARDS
+   ========================================================================== */
+.plans {
+    background: var(--cream-deep);
+}
+
+.plans-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    align-items: stretch;
+}
+
+.plan-card {
+    position: relative;
+    background: #fff;
+    border-radius: 24px;
+    padding: 45px 35px;
+    border: 1px solid var(--line);
+    transition: var(--transition-smooth);
+    display: flex;
+    flex-direction: column;
+}
+
+.plan-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(38, 43, 34, 0.08);
+}
+
+/* Highlight Most Popular */
+.plan-card.popular {
+    border: 2px solid var(--terracotta);
+}
+
+.popular-badge {
+    position: absolute;
+    top: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--terracotta);
+    color: #fff;
+    padding: 6px 22px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px rgba(193, 122, 78, 0.25);
+}
+
+.plan-name {
+    font-family: 'Fraunces', serif;
+    font-size: 2rem;
+    color: var(--moss);
+    margin-bottom: 10px;
+}
+
+.price {
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--moss);
+    margin-bottom: 25px;
+}
+
+.price span {
+    font-size: 1rem;
+    color: var(--ink-soft);
+    font-weight: 400;
+}
+
+.plan-card ul {
+    list-style: none;
+    margin-bottom: auto; /* Mendorong tombol ke area paling bawah kartu secara presisi */
+}
+
+.plan-card li {
+    margin: 14px 0;
+    font-size: 1rem;
+    color: var(--ink-soft);
+    display: flex;
+    align-items: center;
+}
+
+.plan-card li i {
+    color: var(--terracotta);
+    margin-right: 10px;
+    font-size: 0.95rem;
+}
+
+.join-btn {
+    width: 100%;
+    margin-top: 35px;
+    padding: 15px;
+    border: none;
+    border-radius: 50px;
+    background: var(--moss);
+    color: #fff;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.join-btn:hover {
+    background: var(--terracotta);
+}
+
+/* ==========================================================================
+   5. CALL TO ACTION BLOCK
+   ========================================================================== */
+.cta {
+    text-align: center;
+    background: var(--moss);
+    color: #fff;
+}
+
+.cta h2 {
+    color: #fff;
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 15px;
+}
+
+.cta p {
+    max-width: 600px;
+    margin: 0 auto 35px;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1.1rem;
+}
+
+.btn-primary {
+    display: inline-block;
+    padding: 16px 45px;
+    background: var(--terracotta);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: background 0.3s ease, transform 0.2s ease;
+    border: none;
+}
+
+.btn-primary:hover {
+    background: #ab673f;
+    color: #fff;
+}
+
+/* ==========================================================================
+   6. RESPONSIVE CUSTOM MODALS OVERLAY
+   ========================================================================== */
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 18, 14, 0.65);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition-smooth);
+    z-index: 1050;
+    padding: 15px;
+}
+
+.modal.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background: #fff;
+    width: 100%;
+    max-width: 460px;
+    padding: 40px 30px;
+    border-radius: 24px;
+    position: relative;
+    transform: translateY(25px) scale(0.97);
+    transition: var(--transition-smooth);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.18);
+    border: none;
+}
+
+.modal.show .modal-content {
+    transform: translateY(0) scale(1);
+}
+
+.close-modal, .close-payment {
+    position: absolute;
+    right: 22px;
+    top: 18px;
+    font-size: 28px;
+    cursor: pointer;
+    color: var(--ink-soft);
+    transition: transform 0.3s ease, color 0.3s ease;
+    line-height: 1;
+}
+
+.close-modal:hover, .close-payment:hover {
+    color: #000;
+    transform: rotate(90deg);
+}
+
+.modal-content h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: var(--moss);
+    font-size: 1.65rem;
+}
+
+#membershipForm {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+#membershipForm input {
+    width: 100%;
+    padding: 14px 18px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    font-size: 0.95rem;
+    outline: none;
+    background: var(--paper);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#membershipForm input:focus {
+    border-color: var(--moss-soft);
+    box-shadow: 0 0 0 4px rgba(92, 110, 76, 0.15);
+}
+
+#selectedPlan {
+    background: #f4f0e6 !important;
+    font-weight: 600;
+    color: var(--moss);
+    cursor: not-allowed;
+}
+
+#membershipForm button, #finishPayment {
+    margin-top: 10px;
+    background: var(--moss);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    padding: 15px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+#membershipForm button:hover, #finishPayment:hover {
+    background: var(--moss-soft);
+}
+
+/* Payment QRIS Block Specific */
+.payment-content {
+    text-align: center;
+}
+
+.payment-qr {
+    width: 220px;
+    max-width: 80%;
+    margin: 20px auto;
+    display: block;
+    border-radius: 14px;
+    padding: 8px;
+    background: #fff;
+    border: 1px solid var(--line);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+}
+
+.payment-note {
+    color: var(--ink-soft);
+    font-size: 0.9rem;
+    margin-bottom: 25px;
+}
+
+/* ==========================================================================
+   7. PREMIUM FOOTER SECTION
+   ========================================================================== */
+.tb-footer {
+    background: #F7F4EF;
+    border-top: 2px solid #C8A16B;
+}
+
+.tb-footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 70px 20px 40px;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr 1fr;
+    gap: 40px;
+}
+
+.tb-footer-container > div {
+    text-align: left;
+}
+
+.tb-logo {
+    width: 190px;
+    height: auto;
+    object-fit: contain;
+}
+
+.tb-footer-title {
+    color: #C9A96E;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.tb-footer-text, .tb-contact-item {
+    color: #4A5139;
+    font-size: 0.95rem;
+    line-height: 1.8;
+}
+
+.tb-contact-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.tb-contact-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.tb-contact-item i {
+    color: #B75A3C;
+    font-size: 1.3rem;
+}
+
+.tb-contact-item a {
+    color: #B75A3C;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.tb-socials {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.tb-social-btn {
+    width: 42px;
+    height: 42px;
+    border: 1px solid #C8A16B;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: var(--transition-smooth);
+    background: transparent;
+}
+
+.tb-social-btn i {
+    color: #6D7550;
+    font-size: 1.2rem;
+}
+
+.tb-social-btn:hover {
+    background: #B75A3C;
+    border-color: #B75A3C;
+    transform: translateY(-3px);
+}
+
+.tb-social-btn:hover i {
+    color: #fff;
+}
+
+.tb-footer-bottom {
+    border-top: 1px solid rgba(109, 117, 80, 0.15);
+    text-align: center;
+    padding: 25px 20px;
+    color: #6D7550;
+    font-size: 0.9rem;
+}
+
+/* ==========================================================================
+   8. MEDIA QUERIES (BREAKPOINTS) RESPONSIVE ENGINE
+   ========================================================================== */
+
+/* Laptop / Tablet Landscape (991px dan ke bawah) */
+@media (max-width: 991px) {
+    body {
+        padding-top: 60px;
+    }
+    .navbar-brand img {
+        height: 70px;
+    }
+    .tb-footer-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+    }
+}
+
+@media (max-width: 991px) {
+    .navbar-collapse {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;   
+    }
+    .navbar-nav {
+        margin-left: 0 !important;  
+        margin-right: 0 !important;
+        width: 100%;
+    }
+    .nav-user {
+        order: -1;
+        align-self: flex-start;     
+        margin-bottom: 12px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid rgba(0,0,0,.08);
+        width: fit-content;
+    }
+    .navbar-brand img {
+        height: 70px;
+    }
+    .nav-user-avatar {
+        width: 38px;
+        height: 38px;
+        font-size: 16px;
+    }
+    .nav-user-name {
+        font-size: 15px;
+    }
+}
+
+/* Tablet Portrait (768px dan ke bawah) */
+@media (max-width: 768px) {
+    .membership-section, .plans, .cta {
+        padding: 60px 0;
+    }
+    .plans-grid {
+        grid-template-columns: 1fr;
+        max-width: 450px;
+        margin: 0 auto;
+    }
+    .plan-card.popular {
+        order: -1; /* Membuat paket 'Gold / Terpopuler' bergeser naik paling atas di layar HP */
+    }
+}
+
+/* Ponsel / Mobile Device (576px dan ke bawah) */
+@media (max-width: 576px) {
+    .container {
+        width: 88%;
+    }
+    .hero {
+        height: 65vh;
+        min-height: 420px;
+    }
+    .eyebrow {
+        margin-bottom: 15px;
+        padding: 6px 16px;
+    }
+    .benefit-grid {
+        grid-template-columns: 1fr;
+    }
+    .benefit-card {
+        padding: 30px 22px;
+    }
+    .modal-content {
+        padding: 35px 20px;
+    }
+    .tb-footer-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 35px;
+    }
+    .tb-footer-container > div {
+        text-align: center;
+    }
+    .tb-contact-item, .tb-socials {
+        justify-content: center;
+    }
+    .tb-logo {
+        margin: 0 auto;
+    }
+}
+</style>
+</head>
+
+<body>
+    <header> 
+        <nav class="navbar navbar-expand-lg px-3 px-md-5 fixed-top navbar-custom" id="siteNav"> 
+            <a class="navbar-brand" href="membership.html"> 
+                <img src="picture/tinyblisslogo.png" alt="Tiny Bliss"> 
+                <div class="navbar-brand-text"> 
+                    <span class="navbar-brand-name">TinyBliss</span> 
+                    <span class="navbar-brand-tagline">Spa &amp; Massage</span> 
+                </div> 
+            </a> 
+
+            <button class="navbar-toggler ms-auto me-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation"> 
+                <span class="navbar-toggler-icon"></span> 
+            </button> 
+
+            <div class="collapse navbar-collapse" id="navbarMenu"> 
+                <ul class="navbar-nav mx-auto gap-lg-3"> 
+                    <li class="nav-item"> 
+                        <a class="nav-link" href="index.html">Home</a> 
+                    </li> 
+                    <li class="nav-item"> 
+                        <a class="nav-link" href="aboutus.html">About Us</a> 
+                    </li> 
+                    <li class="nav-item"> 
+                        <a class="nav-link" href="service.html">Service</a> 
+                    </li> 
+                    <li class="nav-item"> 
+                        <a class="nav-link active" href="membership.html">Member</a> 
+                    </li> 
+                    <li class="nav-item"> 
+                        <a class="nav-link" href="booking.html">Booking</a> 
+                    </li> 
+                </ul> 
+
+                <div class="nav-user ms-lg-3" href="#"> 
+                    <div class="nav-user-avatar"> 
+                        <i class="ti ti-user"></i> 
+                    </div> 
+                    <div class="nav-user-info"> 
+                        <span class="nav-user-greeting">Selamat datang</span> 
+                        <span id="fullname"></span>
+                    </div> 
+                    <button class="btn-logout" onclick="logout()" title="Logout">
+                        <i class="ti ti-logout"></i>
+                    </button>
+                </div> 
+            </div> 
+        </nav> 
+    </header>
+
+    <section class="hero">
+        <img src="picture/11.png" alt="TinyBliss Spa" class="hero-image">
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+            <p class="eyebrow">TinyBliss Membership</p>
+            <h1 class="hero-title">
+                Wellness that<br>stays with <em>you.</em>
+            </h1>
+            <p class="hero-desc">
+                Jadikan relaksasi sebagai bagian dari gaya hidup. Membership TinyBliss memberikan akses eksklusif,
+                benefit premium, serta pengalaman spa terbaik di setiap kunjungan.
+            </p>
+        </div>
+    </section>
+
+    <section id="benefits" class="membership-section">
+        <div class="container">
+            <div class="section-head">
+                <h2>Choose the membership that fits your lifestyle.</h2>
+                <p>Nikmati berbagai keuntungan eksklusif, diskon treatment, priority booking, birthday gift, hingga akses promo khusus member.</p>
+            </div>
+
+            <div class="benefit-grid">
+                <div class="benefit-card">
+                    <i class="ti ti-calendar-check"></i>
+                    <h3>Priority Booking</h3>
+                    <p>Reservasi lebih cepat dengan slot khusus member.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="ti ti-percentage"></i>
+                    <h3>Exclusive Discount</h3>
+                    <p>Potongan harga hingga 20% untuk seluruh treatment.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="ti ti-gift"></i>
+                    <h3>Birthday Reward</h3>
+                    <p>Free treatment dan special gift setiap ulang tahun.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="ti ti-sparkles"></i>
+                    <h3>Member Event</h3>
+                    <p>Undangan eksklusif wellness workshop dan private event.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="plans" class="plans">
+        <div class="container">
+            <div class="section-title">
+                <h2>Pilih Membership</h2>
+                <p>Pilih paket yang sesuai dengan kebutuhanmu.</p>
+            </div>
+
+            <div class="plans-grid">
+                <div class="plan-card">
+                    <div class="plan-name">Silver</div>
+                    <div class="price">Rp199.000<span>/bulan</span></div>
+                    <ul>
+                        <li><i class="fa-solid fa-check"></i> Diskon 10%</li>
+                        <li><i class="fa-solid fa-check"></i> Priority Booking</li>
+                        <li><i class="fa-solid fa-check"></i> Birthday Voucher</li>
+                        <li><i class="fa-solid fa-check"></i> Reward Point</li>
+                    </ul>
+                    <button class="join-btn" data-plan="Silver">Gabung</button>
+                </div>
+
+                <div class="plan-card popular">
+                    <div class="popular-badge">Most Popular</div>
+                    <div class="plan-name">Gold</div>
+                    <div class="price">Rp399.000<span>/bulan</span></div>
+                    <ul>
+                        <li><i class="fa-solid fa-check"></i> Diskon 20%</li>
+                        <li><i class="fa-solid fa-check"></i> Priority Booking</li>
+                        <li><i class="fa-solid fa-check"></i> Free Facial</li>
+                        <li><i class="fa-solid fa-check"></i> Reward Point 2x</li>
+                        <li><i class="fa-solid fa-check"></i> Exclusive Event</li>
+                    </ul>
+                    <button class="join-btn" data-plan="Gold">Gabung</button>
+                </div>
+
+                <div class="plan-card">
+                    <div class="plan-name">Platinum</div>
+                    <div class="price">Rp699.000<span>/bulan</span></div>
+                    <ul>
+                        <li><i class="fa-solid fa-check"></i> Diskon 30%</li>
+                        <li><i class="fa-solid fa-check"></i> Unlimited Priority Booking</li>
+                        <li><i class="fa-solid fa-check"></i> Free Hair Spa</li>
+                        <li><i class="fa-solid fa-check"></i> Free Facial</li>
+                        <li><i class="fa-solid fa-check"></i> Reward Point 3x</li>
+                        <li><i class="fa-solid fa-check"></i> VIP Customer Service</li>
+                    </ul>
+                    <button class="join-btn" data-plan="Platinum">Gabung</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="container">
+            <h2>Siap Menjadi Member?</h2>
+            <p>Nikmati seluruh keuntungan eksklusif dan pengalaman spa yang lebih istimewa.</p>
+            <a href="#plans" class="btn-primary">Daftar Sekarang</a>
+        </div>
+    </section>
+
+    <div class="modal" id="membershipModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Form Pendaftaran</h2>
+            <form id="membershipForm">
+                <input type="text" placeholder="Nama Lengkap" required>
+                <input type="email" placeholder="Email" required>
+                <input type="tel" placeholder="Nomor HP" required>
+                <input type="text" id="selectedPlan" readonly>
+                <button type="submit">Daftar Membership</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="paymentModal">
+        <div class="modal-content payment-content">
+            <span class="close-payment">&times;</span>
+            <h2>Pembayaran Membership</h2>
+            <p>Silakan scan QRIS berikut untuk menyelesaikan pembayaran.</p>
+            
+            <img src="picture/qris.png" alt="QRIS" class="payment-qr">
+            
+            <p class="payment-note">
+                Setelah pembayaran berhasil, klik tombol di bawah.
+            </p>
+            <button id="finishPayment">
+                Saya Sudah Bayar
+            </button>
+        </div>
+    </div>
+
+    <footer class="tb-footer">
+        <div class="tb-footer-container">
+            <div>
+                <img src="picture/tinyblisslogo.png" alt="Tiny Bliss" class="tb-logo">
+            </div>
+
+            <div>
+                <h3 class="tb-footer-title">Alamat Kami</h3>
+                <div class="tb-footer-text">
+                    <p>Tiny Bliss Salon Spa & Massage</p>
+                    <p>Yogyakarta, Indonesia</p>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="tb-footer-title">Hubungi Kami</h3>
+                <div class="tb-contact-wrapper">
+                    <div class="tb-contact-item">
+                        <i class="ti ti-brand-whatsapp"></i>
+                        <a href="https://wa.me/6285141129477">085141129477</a>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="tb-footer-title">Follow Us On</h3>
+                <div class="tb-socials">
+                    <a href="#" class="tb-social-btn">
+                        <i class="ti ti-brand-facebook"></i>
+                    </a>
+                    <a href="#" class="tb-social-btn">
+                        <i class="ti ti-brand-tiktok"></i>
+                    </a>
+                    <a href="#" class="tb-social-btn">
+                        <i class="ti ti-brand-youtube"></i>
+                    </a>
+                    <a href="#" class="tb-social-btn">
+                        <i class="ti ti-brand-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="tb-footer-bottom">
+            © 2026 Tiny Bliss Salon Spa & Massage. All Rights Reserved.
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="membership.js"></script>
+    <script src="navbar.js"></script>
+</body>
+</html>
