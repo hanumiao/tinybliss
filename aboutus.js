@@ -59,6 +59,7 @@
             timer = setInterval(autoNext, INTERVAL);
         })();
 
+            import CONFIG from './config.js'
             mapboxgl.accessToken = CONFIG.mapbox_token;
             const lokasiToko = [110.3695, -7.7956]; //koordinat lokasi toko 
             const map = new mapboxgl.Map({

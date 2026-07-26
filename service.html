@@ -228,34 +228,26 @@ body::before {
   align-items: flex-end;
 }
 
-.hero video {
-  position: absolute; 
-  inset: 0;
-  width: 100%; 
+.hero img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: brightness(.7) saturate(.85);
+  z-index: 1;
 }
 
 .hero-overlay {
-  position: absolute; 
+  position: absolute;
   inset: 0;
   background: linear-gradient(
     180deg,
     rgba(20,24,16,.06) 0%,
-    rgba(20,24,16,.2)  40%,
+    rgba(20,24,16,.2) 40%,
     rgba(14,18,10,.82) 100%
   );
-}
-
-/* Decorative side line */
-.hero::before {
-  content: "";
-  position: absolute;
-  left: 0; top: 0; bottom: 0;
-  width: 3px;
-  background: linear-gradient(180deg, transparent, var(--gold) 40%, transparent);
-  z-index: 4;
+  z-index: 2;
 }
 
 .hero-content {
@@ -1132,9 +1124,7 @@ body::before {
 
   <!-- ========== HERO ========== -->
   <div class="hero">
-    <video autoplay muted loop playsinline>
-      <source src="" type="video/mp4" alt="ibuk ini videonya saya hapus yah">
-    </video>
+    <img src="picture/25.jpg" alt="">
     <div class="hero-overlay"></div>
 
     <div class="hero-content">
