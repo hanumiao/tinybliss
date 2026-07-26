@@ -59,16 +59,17 @@
             timer = setInterval(autoNext, INTERVAL);
         })();
 
-            import CONFIG from './config.js'
-            mapboxgl.accessToken = CONFIG.mapbox_token;
-            const lokasiToko = [110.3695, -7.7956]; //koordinat lokasi toko 
-            const map = new mapboxgl.Map({
-                container: 'tb-map',
-                style: 'mapbox://styles/mapbox/streets-v12',
-                center: lokasiToko,
-                zoom: 14
-            });
-            new mapboxgl.Marker({ color: '#c99b6b' })
-                .setLngLat(lokasiToko)
-                .setPopup(new mapboxgl.Popup({ offset: 25 }).setHTML("<b>Tiny Bliss Salon Spa & Massage</b>"))
-                .addTo(map);
+            if(CONFIG && CONFIG.mapbox_token){
+    mapboxgl.accessToken = CONFIG.mapbox_token;
+    const lokasiToko = [110.3695, -7.7956];
+    const map = new mapboxgl.Map({
+    container: 'tb-map',
+    style: 'mapbox://styles/mapbox/light-v11', // ganti dari streets-v12
+    center: lokasiToko,
+    zoom: 14
+});
+    new mapboxgl.Marker({ color: '#c99b6b' })
+        .setLngLat(lokasiToko)
+        .setPopup(new mapboxgl.Popup({ offset: 25 }).setHTML("<b>Tiny Bliss Salon Spa & Massage</b>"))
+        .addTo(map);
+}

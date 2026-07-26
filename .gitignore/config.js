@@ -1,1 +1,0 @@
-const apiConfig = process.env.REACT_APP_config_js
